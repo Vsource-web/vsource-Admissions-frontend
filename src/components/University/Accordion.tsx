@@ -74,7 +74,7 @@ function Item({
         <span
           aria-hidden
           className={[
-            "select-none text-xl sm:text-[8px] leading-none font-bold",
+            "select-none text-xl  leading-none font-bold",
             "text-red-500",
             "transition-transform duration-200",
           ].join(" ")}
