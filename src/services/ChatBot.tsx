@@ -4,10 +4,19 @@ interface ChatBotProps {
   onClose?: () => void;
 }
 
+// Extend window interface to include custom properties
+declare global {
+  interface Window {
+    Chatty: any;
+    gbWidgetOnClose?: () => void;
+  }
+}
+
 const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
   useEffect(() => {
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0Ijoid3d3LnZzb3VyY2VvdmVyc2Vhcy5jb20iLCJpZCI6IjY3NmZlMzQ3Yzk3NTFkMmFhNWNkZTQ5NyIsImFjY0lkIjoiNjZiZjVjNjUzNTIzZmIxNjhjYzBkZTFlIiwiaWF0IjoxNzM1Mzg2MTgwfQ.3S6jVYpF0IgDzev3E98tthkqDG081q1nG8Z_UD5D4Rg";
+
     (function (w, d, s, u, t) {
       w.Chatty = function (c: any) {
         w.Chatty._.push(c);
@@ -15,6 +24,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
       w.Chatty._ = [];
       w.Chatty.url = u;
       w.Chatty.hash = t;
+
       const h = d.getElementsByTagName(s)[0];
       const j = d.createElement(s) as HTMLScriptElement;
       j.async = true;
@@ -23,6 +33,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
       h.parentNode?.insertBefore(j, h);
     })(window, document, "script", "https://widget.gallabox.com", token);
 
+    // Hook into widget close
     window.gbWidgetOnClose = () => {
       if (onClose) onClose();
     };

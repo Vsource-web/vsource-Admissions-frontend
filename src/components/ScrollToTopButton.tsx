@@ -62,7 +62,7 @@ const ScrollToTopButton: React.FC<Props> = ({
       )}
 
       {/* ✅ Load Gallabox once here */}
-      <ChatBot onClose={() => setChatOpen(false)} />
+      {/* <ChatBot onClose={() => setChatOpen(false)} /> */}
       <style>{`
 
         .sonar-button {

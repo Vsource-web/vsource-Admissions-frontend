@@ -272,63 +272,63 @@ interface BenefitItem {
 const benefitData: BenefitItem[] = [
   {
     id: 1,
-    image: "/assets/images/benfit-1.png",
+    image: "/images/benfit-1.png",
     heading: "Enhanced Productivity",
     paragraph:
       "Streamline your workflow and get more done in less time with our intuitive tools.",
   },
   {
     id: 2,
-    image: "/assets/images/benfit-2.png",
+    image: "/images/benfit-2.png",
     heading: "Improved Collaboration",
     paragraph:
       "Work together seamlessly with your team on shared projects, no matter where you are.",
   },
   {
     id: 3,
-    image: "/assets/images/benfit-3.png",
+    image: "/images/benfit-3.png",
     heading: "Cost Savings",
     paragraph:
       "Reduce overhead and lower operational costs by adopting our efficient platform.",
   },
   {
     id: 4,
-    image: "/assets/images/benfit-4.png",
+    image: "/images/benfit-4.png",
     heading: "Data-Driven Decisions",
     paragraph:
       "Gain valuable insights from your data to make smarter, more informed business choices.",
   },
   {
     id: 5,
-    image: "/assets/images/benfit-5.png",
+    image: "/images/benfit-5.png",
     heading: "Scalable Solutions",
     paragraph:
       "Our solution grows with you, providing the flexibility to handle your expanding needs.",
   },
   {
     id: 6,
-    image: "/assets/images/benfit-6.png",
+    image: "/images/benfit-6.png",
     heading: "Increased Security",
     paragraph:
       "Protect your sensitive information with our robust, industry-leading security features.",
   },
   {
     id: 7,
-    image: "/assets/images/benfit-7.png",
+    image: "/images/benfit-7.png",
     heading: "Customer Satisfaction",
     paragraph:
       "Delight your customers with a seamless experience and exceptional support.",
   },
   {
     id: 8,
-    image: "/assets/images/benfit-8.png",
+    image: "/images/benfit-8.png",
     heading: "Market Expansion",
     paragraph:
       "Enter new markets and reach a wider audience with our global-ready capabilities.",
   },
   {
     id: 9,
-    image: "/assets/images/benfit-9.png",
+    image: "/images/benfit-9.png",
     heading: "Swift Approvals",
     paragraph:
       "The streamlined approval process of an online education loan ensures prompt access to the necessary support",
@@ -410,7 +410,7 @@ const EducationLoan: React.FC = () => {
             </p>
             <div className="block lg:hidden my-6">
               <img
-                src="/assets/images/education-loans.jpg"
+                src="/images/education-loans.jpg"
                 alt="Education Loan"
                 className="w-full h-auto object-cover rounded-xl"
               />
@@ -452,9 +452,7 @@ const EducationLoan: React.FC = () => {
         </div>
         <div className="hidden lg:block absolute inset-0">
           <img
-            src={
-              data?.background_image?.url || "/assets/images/education-loan.png"
-            }
+            src={data?.background_image?.url || "/images/education-loan.png"}
             alt="Education Loan"
             className="w-full h-full object-cover"
           />

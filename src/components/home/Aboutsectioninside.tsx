@@ -110,7 +110,7 @@ const AboutSection: React.FC = () => {
         <div className="w-full lg:w-2/5">
           <div className="flex flex-col items-center text-center border border-gray-300 rounded-xl p-3 sm:p-4">
             <img
-              src="https://vsourcevarsity.com/assets/images/founder.webp"
+              src="https://vsourcevarsity.com/images/founder.webp"
               alt="Founder"
               className="rounded-lg w-full max-w-md object-cover aspect-[4/3] sm:aspect-[3/2]"
             />

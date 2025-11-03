@@ -35,7 +35,7 @@ const Accreditation = () => {
           >
             <h2 className="section-title">CERTIFICATIONS</h2>
             <img
-              src="assets/images/ets.jpeg"
+              src="/images/ets.jpeg"
               alt="ETS Certification"
               className="accreditation-img large-img"
             />
@@ -51,7 +51,7 @@ const Accreditation = () => {
             <h2 className="section-title">MEMBERSHIPS</h2>
             <div className="membership-row">
               <img
-                src="assets/images/images.png"
+                src="/images/images.png"
                 alt="EAIE Membership"
                 className="accreditation-img"
                 data-aos="fade-up"
@@ -59,7 +59,7 @@ const Accreditation = () => {
                 data-aos-duration="900"
               />
               <img
-                src="assets/images/nafsa.jpeg"
+                src="/images/nafsa.jpeg"
                 alt="NAFSA Membership"
                 className="accreditation-img"
                 data-aos="fade-up"
@@ -97,7 +97,7 @@ const Accreditation = () => {
           >
             <h2 className="section-title">CERTIFICATIONS</h2>
             <img
-              src="assets/images/ets.jpeg"
+              src="/images/ets.jpeg"
               alt="ETS Certification"
               className="accreditation-img"
             />
@@ -113,7 +113,7 @@ const Accreditation = () => {
             <h2 className="section-title">MEMBERSHIPS</h2>
             <div className="membership-row">
               <img
-                src="assets/images/images.png"
+                src="/images/images.png"
                 alt="EAIE Membership"
                 className="accreditation-img"
                 data-aos="fade-up"
@@ -121,7 +121,7 @@ const Accreditation = () => {
                 data-aos-duration="900"
               />
               <img
-                src="assets/images/nafsa.jpeg"
+                src="/images/nafsa.jpeg"
                 alt="NAFSA Membership"
                 className="accreditation-img"
                 data-aos="fade-up"

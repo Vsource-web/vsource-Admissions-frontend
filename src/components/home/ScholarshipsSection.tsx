@@ -14,8 +14,8 @@ const ScholarshipsSection: React.FC<Prop> = ({ loan, isLoading }) => {
     Ireland: "https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg",
   };
 
-  const defaultFlag = "/assets/images/placeholder-flag.png";
-  const defaultStudentImage = "/assets/images/default-student.png";
+  const defaultFlag = "/images/placeholder-flag.png";
+  const defaultStudentImage = "/images/default-student.png";
 
   const currencyMap: Record<string, string> = {
     USA: "USD",

@@ -58,7 +58,7 @@ const Banksloans: React.FC<Prop> = ({ bankBlock, isLoading }) => {
               <Link to={bank.path || "#"}>
                 <div className="flex-1 flex items-center justify-center p-4">
                   <img
-                    src={bank.logo?.url || "/assets/images/placeholder.png"}
+                    src={bank.logo?.url || "/images/placeholder.png"}
                     alt={bank.name}
                     className="max-h-12 object-cover"
                   />

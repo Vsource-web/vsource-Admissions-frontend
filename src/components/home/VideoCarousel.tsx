@@ -7,14 +7,14 @@ type VideoItem = {
 };
 
 const videos: VideoItem[] = [
-  { name: "SAMSRUTHI", video: "/assets/images/video/student4.mp4" },
-  { name: "AMITH REDDY", video: "/assets/images/video/student8.mp4" },
-  { name: "BEDRE VISHWAS", video: "/assets/images/video/student7.mp4" },
-  { name: "DEEKSHITHA", video: "/assets/images/video/student1.mp4" },
-  { name: "SHAIK MUNEER AHMED", video: "/assets/images/video/student6.mp4" },
-  { name: "KHASHIKA", video: "/assets/images/video/student2.mp4" },
-  { name: "SATHVIKA", video: "/assets/images/video/student5.mp4" },
-  { name: "LOVLISH REDDY", video: "/assets/images/video/student3.mp4" },
+  { name: "SAMSRUTHI", video: "/images/video/student4.mp4" },
+  { name: "AMITH REDDY", video: "/images/video/student8.mp4" },
+  { name: "BEDRE VISHWAS", video: "/images/video/student7.mp4" },
+  { name: "DEEKSHITHA", video: "/images/video/student1.mp4" },
+  { name: "SHAIK MUNEER AHMED", video: "/images/video/student6.mp4" },
+  { name: "KHASHIKA", video: "/images/video/student2.mp4" },
+  { name: "SATHVIKA", video: "/images/video/student5.mp4" },
+  { name: "LOVLISH REDDY", video: "/images/video/student3.mp4" },
 ];
 
 const OFFSET = 3;
@@ -55,7 +55,10 @@ const VideoCarousel: React.FC = () => {
     container.style.paddingRight = padding;
   };
 
-  const scrollToIndex = (index: number, behavior: ScrollBehavior = "smooth") => {
+  const scrollToIndex = (
+    index: number,
+    behavior: ScrollBehavior = "smooth"
+  ) => {
     const container = carouselRef.current;
     if (!container) return;
 
@@ -67,7 +70,8 @@ const VideoCarousel: React.FC = () => {
       const elementOffsetLeft = targetElement.offsetLeft;
       const elementWidth = targetElement.offsetWidth;
 
-      const scrollLeft = elementOffsetLeft - containerWidth / 2 + elementWidth / 2;
+      const scrollLeft =
+        elementOffsetLeft - containerWidth / 2 + elementWidth / 2;
       container.scrollTo({ left: scrollLeft, behavior });
     }
 
@@ -224,7 +228,9 @@ const VideoCarousel: React.FC = () => {
             return (
               <div
                 key={`${vid.name}-${index}`}
-                className={`${styles.videoCard} ${isActive ? styles.activeCard : ""}`}
+                className={`${styles.videoCard} ${
+                  isActive ? styles.activeCard : ""
+                }`}
                 style={{ width: `${cardCalculatedWidth}px` }}
               >
                 <div className={styles.videoArea}>
@@ -246,7 +252,10 @@ const VideoCarousel: React.FC = () => {
                       onClick={() => handlePlayClick(index)}
                       aria-label="Play video"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 200 200"
+                      >
                         <circle cx="100" cy="100" r="90" />
                         <polygon points="80,60 150,100 80,140" />
                       </svg>
@@ -257,8 +266,12 @@ const VideoCarousel: React.FC = () => {
                 {isActive && (
                   <>
                     <div className={styles.videoCardText}>
-                      <span className={styles.studentTestimonials}>› Student </span>
-                      <span className={styles.testimonialText}>Testimonials</span>
+                      <span className={styles.studentTestimonials}>
+                        › Student{" "}
+                      </span>
+                      <span className={styles.testimonialText}>
+                        Testimonials
+                      </span>
                     </div>
                     <div className={styles.nameTag}>{vid.name}</div>
                   </>

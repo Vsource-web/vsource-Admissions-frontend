@@ -170,7 +170,7 @@ export default function TestimonialsSection() {
             100% { background-position: -100% 0; }
           }
           .animated-bg {
-            background-image: url('/assets/images/badges/bg test.jpg');
+            background-image: url('/images/badges/bg test.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

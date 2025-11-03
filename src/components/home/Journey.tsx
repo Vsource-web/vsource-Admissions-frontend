@@ -21,7 +21,8 @@ const slides: Slide[] = [
     ctaText: "Explore More",
   },
   {
-    desktop: "/images/universities/ken-walker-international-university.jpg",
+    desktop:
+      "/images/universities/ken-walker-international-university.jpg",
     mobile:
       "/images/universities/ken-walker-international-university-mobile.jpg",
     caption: "Ken Walker International University",
@@ -30,7 +31,8 @@ const slides: Slide[] = [
   },
   {
     desktop: "/images/universities/Tbilisi State Medical University.webp",
-    mobile: "/images/universities/Tbilisi-State-Medical-University-mobile.jpg",
+    mobile:
+      "/images/universities/Tbilisi-State-Medical-University-mobile.jpg",
     caption: "Tbilisi State Medical University",
     ctaHref: "/mbbs-abroad/georgia/tbilisi-state-medical-university",
     ctaText: "Explore More",
@@ -43,8 +45,10 @@ const slides: Slide[] = [
     ctaText: "Explore More",
   },
   {
-    desktop: "/images/universities/Akaki-Tsereteli-State-University-scaled.jpg",
-    mobile: "/images/universities/Akaki-Tsereteli-State-University-mobile.jpg",
+    desktop:
+      "/images/universities/Akaki-Tsereteli-State-University-scaled.jpg",
+    mobile:
+      "/images/universities/Akaki-Tsereteli-State-University-mobile.jpg",
     caption: "Akaki Tsereteli State University",
     ctaHref: "/mbbs-abroad/georgia/akaki-tsereteli-state-university",
     ctaText: "Explore More",

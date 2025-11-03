@@ -3,11 +3,15 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
 import AboutSection from "./AboutSection";
 import Accreditation from "./AccreditationSection";
-import Journey from "@/components/home/Journey";
+// import Journey from "@/components/home/Journey";
 import TrustSection from "@/components/home/TrustSection";
 import CertificateSlider from "@/components/home/CertificateSlider";
 import VideoSection from "@/components/VideoSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
+import CertificateBentoGrid from "@/components/home/CertificateSlider";
+// import JourneyCard from "@/utils/JourneyCard";
+
+import Journey from "@/pages/Journet.tsx";
 
 type Slide = {
   img: string;
@@ -118,165 +122,102 @@ function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
-        className="relative w-full overflow-hidden bg-black" // black base stops white flash
-        aria-roledescription="carousel"
-        onMouseEnter={stop}
-        onMouseLeave={start}
-      >
+      <section className="relative w-full text-white overflow-hidden">
+        {/* === Desktop Background Image === */}
         <div
-          className="relative w-full h-[70svh] md:h-[85svh] lg:h-[90svh] min-h-[420px] max-h-[900px]"
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
+          className="hidden sm:block absolute inset-0 bg-no-repeat bg-cover bg-center shrink-0"
+          style={{
+            backgroundImage: `url(/images/admission-banner.jpg)`,
+          }}
         >
-          {/* Layer 1: previous slide stays until the next fully loads */}
-          <motion.div
-            key={`prev-${prevIdx}-${idx}`}
-            initial={{ opacity: 1 }}
-            animate={{ opacity: isNextLoaded ? 0 : 1 }}
-            transition={{ duration: fadeDur, ease: "easeInOut" }}
-            className="absolute inset-0"
-            aria-hidden // decorative during transition
+          <div className="absolute inset-0 bg-black/20" />
+        </div>
+
+        {/* === Mobile Background Image === */}
+        <div className="relative z-10 sm:hidden w-full px-4 pt-28 pb-10 overflow-hidden shrink-0">
+          <div
+            className="absolute inset-0 bg-no-repeat bg-cover bg-center"
+            style={{
+              backgroundImage: `url(/images/admission-mobile.jpg)`,
+            }}
           >
-            <div className="absolute inset-0">
-              <img
-                src={slides[prevIdx].img}
-                alt="" // prev layer is decorative during transition
-                className="object-cover object-center w-full h-full"
-              />
-            </div>
-            <div className="absolute inset-0 bg-black/55" />
-          </motion.div>
-
-          {/* Layer 2: next/current slide (fades in only after loaded) */}
-          <motion.div
-            key={`cur-${idx}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: fadeDur, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <div className="absolute inset-0">
-              <img
-                src={slides[idx].img}
-                alt={slides[idx].alt}
-                className="object-cover object-center w-full h-full"
-                onLoad={() => {
-                  loadedRef.current[idx] = true;
-                  setIsNextLoaded(true); // triggers fade-out of prev layer
-                }}
-              />
-            </div>
-            <div className="absolute inset-0 bg-black/55" />
-          </motion.div>
-
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 text-white">
-              <motion.h1
-                key={`title-${idx}`}
-                initial={{ y: prefersReducedMotion ? 0 : 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: prefersReducedMotion ? 0 : 0.6 }}
-                className="font-bold text-balance text-[clamp(24px,6vw,52px)] leading-[1.1] max-w-[92vw] sm:max-w-3xl"
-              >
-                {slides[idx].title}
-              </motion.h1>
-
-              <motion.p
-                key={`subtitle-${idx}`}
-                initial={{ y: prefersReducedMotion ? 0 : 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: prefersReducedMotion ? 0 : 0.7,
-                  delay: 0.05,
-                }}
-                className="mt-3 text-white/90 text-[clamp(14px,3.8vw,20px)] max-w-[92vw] sm:max-w-2xl"
-              >
-                {slides[idx].subtitle}
-              </motion.p>
-
-              <motion.div
-                key={`cta-${idx}`}
-                initial={{ y: prefersReducedMotion ? 0 : 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: prefersReducedMotion ? 0 : 0.7,
-                  delay: 0.1,
-                }}
-                className="mt-6 flex flex-wrap gap-3"
-              >
-                <RouterLink
-                  to={slides[idx].cta.href}
-                  className="inline-flex items-center justify-center px-5 py-2 rounded-[6px] bg-red-600 text-white text-sm md:text-base hover:bg-white hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                >
-                  {slides[idx].cta.label}
-                </RouterLink>
-                <a
-                  href="#gallery"
-                  className="inline-flex items-center justify-center px-5 py-2 rounded-[6px] border border-white/80 bg-transparent text-white text-sm md:text-base hover:bg-red-600 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                >
-                  Gallery
-                </a>
-              </motion.div>
-            </div>
+            {/* <div className="absolute inset-0 bg-black/60" /> */}
           </div>
 
-          {/* Arrows */}
-          <div className="absolute left-4 bottom-6 sm:left-6 sm:bottom-8 z-10 flex gap-3">
-            <button
-              aria-label="Previous Slide"
-              onClick={() =>
-                goTo((i) => (i - 1 + slides.length) % slides.length)
-              }
-              className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 text-white shadow transition backdrop-blur-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <button
-              aria-label="Next Slide"
-              onClick={() => goTo((i) => (i + 1) % slides.length)}
-              className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 text-white shadow transition backdrop-blur-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="9 6 15 12 9 18" />
-              </svg>
-            </button>
+          {/* Mobile Content */}
+          <div className="relative z-10 flex flex-col justify-between min-h-full">
+            <div className="flex">
+              <div className="w-[50%] bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex flex-col justify-center space-y-3 mb-5">
+                <h1 className="text-2xl font-bold leading-snug">
+                  Study{" "}
+                  <span className="block text-red-600 text-xl">
+                    MBBS Abroad
+                  </span>
+                </h1>
+                <div className="flex items-center space-x-2 mt-2">
+                  <img
+                    src="https://flagcdn.com/ge.svg"
+                    alt="Georgia"
+                    className="w-6 h-6 object-cover rounded-full"
+                  />
+                  <img
+                    src="https://flagcdn.com/ru.svg"
+                    alt="Russia"
+                    className="w-6 h-6 object-cover rounded-full"
+                  />
+                </div>
+                <p className="text-white text-sm">
+                  Pursue your dream of becoming a doctor with world-class
+                  medical education.
+                </p>
+                <img
+                  src="/images/20 years logo.png"
+                  alt="20 Years Logo"
+                  className="w-20 h-auto mt-4 "
+                />
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href="#apply"
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-red-600 text-white text-sm hover:bg-white hover:text-red-600 transition-colors"
+                  >
+                    Book Free Counseling
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Preload neighbors invisibly to avoid future flashes */}
-        <div aria-hidden className="hidden">
-          {slides.map((s, i) => (
-            <img
-              key={`preload-${i}`}
-              src={s.img}
-              alt=""
-              width={1}
-              height={1}
-              onLoad={() => (loadedRef.current[i] = true)}
-            />
-          ))}
+        {/* === Desktop Layout === */}
+        <div className="hidden sm:flex relative z-10 items-center h-[70svh] md:h-[85svh] lg:h-[90svh] min-h-[420px] max-h-[900px]">
+          <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 text-white text-left">
+            <h1 className="font-bold text-[clamp(28px,6vw,56px)] leading-tight">
+              Study MBBS Abroad
+            </h1>
+            <p className="mt-4 text-white/90 text-[clamp(14px,4vw,20px)] max-w-[90vw] sm:max-w-xl">
+              Pursue your dream of becoming a doctor with world-class medical
+              education in{" "}
+              <span className="font-semibold text-red-600">Georgia</span> and{" "}
+              <span className="font-semibold text-red-600">Russia</span>.
+              Affordable tuition fees, globally recognized universities, and
+              safe, welcoming environments await you.
+            </p>
+            <div className="flex justify-start pt-6">
+              <img
+                src="/images/20 years logo.png"
+                alt="20 Years Logo"
+                className="w-36 h-auto"
+              />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#apply"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-red-600 text-white text-sm md:text-base hover:bg-white hover:text-red-600 transition-colors"
+              >
+                Book Free Counseling
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -284,11 +225,13 @@ function Home() {
 
       <Accreditation />
 
+      {/* <Journey /> */}
+      {/* <JourneyCard /> */}
       <Journey />
 
       <TrustSection />
 
-      {/* <CertificateSlider /> */}
+      <CertificateBentoGrid />
 
       <VideoSection />
 

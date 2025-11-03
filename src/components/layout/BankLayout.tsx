@@ -105,7 +105,7 @@ const BankLayout: React.FC<BankLayoutProps> = ({
         style={{
           backgroundImage: background_image
             ? `url(${background_image?.url})`
-            : "url(/assets/images/our-partners.png)",
+            : "url(/images/our-partners.png)",
         }}
       >
         <div className="absolute inset-0 bg-black/50" />

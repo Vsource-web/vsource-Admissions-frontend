@@ -299,7 +299,7 @@
   .wrapper {
     padding: 20px 10px;
     background-color: transparent;
-    background-image: url("public/assets/backgrounds/mobile-bg/video-section.jpg");
+    background-image: url("public/backgrounds/mobile-bg/video-section.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

@@ -15,16 +15,17 @@ const fallbackServices = [
     title: "ABROAD MASTERS",
     description:
       "Turn your masters dream\n into a global reality\nUS | UK | IRELAND | CANADA | FRANCE",
-    imageSrc: "/assets/images/aborad.jpg",
+    imageSrc: "/images/aborad.jpg",
     externalUrl: "https://vsourceoverseas.com/",
-    logoSrc: "/assets/images/logo overseas.png",
+    logoSrc: "/images/logo overseas.png",
   },
   {
     title: "MBBS IN ABROAD",
-    description: "Affordable, Globally Recognized\n MBBS Abroad\nGeorgia | Russia",
-    imageSrc: "/assets/images/mbbs.jpg",
+    description:
+      "Affordable, Globally Recognized\n MBBS Abroad\nGeorgia | Russia",
+    imageSrc: "/images/mbbs.jpg",
     externalUrl: "https://vsourceadmissions.com/",
-    logoSrc: "/assets/images/mini logo.png",
+    logoSrc: "/images/mini logo.png",
   },
 ];
 function getMediaUrl(media: any): string | undefined {
@@ -44,9 +45,9 @@ const ServicesSection: React.FC<Prop> = ({ compre, isLoading = false }) => {
     ? cmsCards.map((c) => ({
         title: c.title ?? "Untitled",
         description: c.description ?? "",
-        imageSrc: getMediaUrl(c.image) ?? "/assets/images/placeholder.png",
+        imageSrc: getMediaUrl(c.image) ?? "/images/placeholder.png",
         externalUrl: c.external_url ?? c.external_url ?? "#",
-        logoSrc: getMediaUrl(c.logo) ?? "/assets/images/mini logo.png",
+        logoSrc: getMediaUrl(c.logo) ?? "/images/mini logo.png",
         id: c.id,
       }))
     : fallbackServices.map((s, i) => ({ ...s, id: `fallback-${i}` }));
@@ -68,15 +69,17 @@ const ServicesSection: React.FC<Prop> = ({ compre, isLoading = false }) => {
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
           {isLoading
-            ? 
-              Array.from({ length: skeletonCount }).map((_, i) => (
+            ? Array.from({ length: skeletonCount }).map((_, i) => (
                 <div
                   key={`skeleton-${i}`}
                   className="animate-pulse rounded-xl bg-gray-100 h-64 md:h-56"
                 />
               ))
             : services.map((service: any, index: number) => (
-                <AnimateOnScroll key={service.id ?? service.title} delay={index * 100}>
+                <AnimateOnScroll
+                  key={service.id ?? service.title}
+                  delay={index * 100}
+                >
                   <div
                     role="button"
                     tabIndex={0}
@@ -98,7 +101,8 @@ const ServicesSection: React.FC<Prop> = ({ compre, isLoading = false }) => {
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.onerror = null;
-                          target.src = "https://via.placeholder.com/600x400?text=Image+Not+Found";
+                          target.src =
+                            "https://via.placeholder.com/600x400?text=Image+Not+Found";
                         }}
                       />
                     </div>
@@ -112,7 +116,7 @@ const ServicesSection: React.FC<Prop> = ({ compre, isLoading = false }) => {
                           onError={(e) => {
                             const t = e.target as HTMLImageElement;
                             t.onerror = null;
-                            t.src = "/assets/images/mini logo.png";
+                            t.src = "/images/mini logo.png";
                           }}
                         />
                         <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
@@ -125,7 +129,7 @@ const ServicesSection: React.FC<Prop> = ({ compre, isLoading = false }) => {
 
                       <div className="mt-3 flex gap-3 flex-wrap sm:flex-nowrap">
                         <a
-                          href={"/assets/media/Brochure 16 pages _CTC.pdf"}
+                          href={"/media/Brochure 16 pages _CTC.pdf"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs sm:text-sm bg-white text-black font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-md hover:bg-gray-200 transition text-center flex-1 sm:flex-none"
