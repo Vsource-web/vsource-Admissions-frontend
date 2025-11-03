@@ -148,16 +148,23 @@ export interface Image {
   name?: string;
 }
 
+
+
+//! Testimonials
+
+export interface Testimonials {
+  id: number;
+  title: string;
+  description: string;
+  background_image: Image;
+  testimonials: Testimonial[];
+}
+
 export interface Testimonial {
   id: number;
   name: string;
   feedback: string;
   image: Image;
-}
-
-export interface Testimonials {
-  basic: Basic;
-  testimonials: Testimonial[];
 }
 
 // ---------- Union of Blocks ----------
@@ -185,7 +192,29 @@ export interface LandingPage {
   updatedAt: string;
   publishedAt: string;
 }
+export interface AboutUs {
+  id: number;
+  title: string;
+  SubTitle_1: string;
+  SubTitle_2: string;
+  SubTitle_3: string;
+  about_list: AboutList[];
+  About_us_count: AboutUsCount[];
+  chairmanImage: Image;
+}
+export interface AboutList {
+  id: number;
+  about_text: string;
+  bold_text: string;
+  Image_or_gif: Image;
+}
 
+export interface AboutUsCount {
+  id: number;
+  About_text: string;
+  count: string;
+  image_or_gif: Image;
+}
 //! About Us
 
 export interface Description {

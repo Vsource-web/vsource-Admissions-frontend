@@ -150,7 +150,7 @@ export function Footer() {
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-primary" />
                 <span className="text-gray-400">
-                  Support@vsourcefintech.com
+                  Support@vsourceadmissions.com
                 </span>
               </li>
               <li className="flex">
@@ -163,7 +163,82 @@ export function Footer() {
             </ul>
           </div>
         </div>
+        <div className="border-t border-gray-800 md:pt-8 pt-5">
+          <h2 className="text-2xl font-bold mb-6">CORPORATE OFFICE</h2>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Telangana */}
+            <div>
+              <h4 className="font-semibold mb-2 text-xl">TELANGANA</h4>
+              {[
+                {
+                  name: "DILSUKHNAGAR",
+                  address:
+                    "Vsource, Near Shashi Hospital, Metro pillar no-1519, Dilsukhnagar, Hyderabad- 500060, Telangana.",
+                },
+                {
+                  name: "AMEERPET",
+                  address:
+                    "Vsource, Vsource Building, Kamma Sangam lane, Ameerpet, Hyderabad-500073, Telangana.",
+                },
+                {
+                  name: "KPHB- JNTU",
+                  address:
+                    "Vsource, Beside JNTU Metro station Near ICICI Bank, Hyderabad, Telangana.",
+                },
+              ].map((branch) => (
+                <div key={branch.name} className="mb-2">
+                  <h5 className="font-medium text-md">{branch.name}</h5>
+                  <p className="text-gray-400 text-sm">{branch.address}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Andhra Pradesh */}
+            <div>
+              <h4 className="font-semibold mb-2 text-xl">ANDHRA PRADESH</h4>
+              {[
+                {
+                  name: "VIJAYAWADA",
+                  address:
+                    "Vsource, 1st floor, Mouli Towers, Beside Reliance Trends, Benz Circle, Vijayawada, Andhra Pradesh.",
+                },
+                {
+                  name: "TIRUPATHI",
+                  address:
+                    "Vsource, 19-3-1/s, 3rd Floor, Renigunta Rd, Postal Colony, Near Jawa Show Room, Tirupathi - 517501.",
+                },
+                {
+                  name: "VISAKHAPATNAM",
+                  address:
+                    "Vsource, RK, Annapurna Nilayam 2nd Floor, Opposite Hotel Kamat, Lawson's Bay Colony, Dr NTR Beach Rd, Visakhapatnam, Andhra Pradesh 530017.",
+                },
+              ].map((branch) => (
+                <div key={branch.name} className="mb-2">
+                  <h5 className="font-medium text-md">{branch.name}</h5>
+                  <p className="text-gray-400 text-sm">{branch.address}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Karnataka */}
+            <div>
+              <h4 className="font-semibold mb-2 text-xl">KARNATAKA</h4>
+              {[
+                {
+                  name: "BENGALURU",
+                  address:
+                    "Vsource, #88, 9th cross G- Block Sahakar Nagar Bengaluru-560092 Karnataka.",
+                },
+              ].map((branch) => (
+                <div key={branch.name} className="mb-2">
+                  <h5 className="font-medium text-md">{branch.name}</h5>
+                  <p className="text-gray-400 text-sm">{branch.address}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-6 mt-6 text-center md:flex md:justify-between md:text-left">
           <p className="text-gray-400 mb-4 md:mb-0">
@@ -176,7 +251,7 @@ export function Footer() {
               }}
               className="text-white hover:underline"
             >
-              Vsource FinTech
+              Vsource Admissions
             </a>{" "}
             All rights reserved.
           </p>
