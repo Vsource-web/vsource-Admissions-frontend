@@ -155,6 +155,7 @@ export interface Testimonials {
   id: number;
   title: string;
   description: string;
+  background_image: Image;
   testimonials: Testimonial[];
 }
 
@@ -164,6 +165,7 @@ export interface Testimonial {
   feedback: string;
   image: Image;
 }
+
 
 //! Service
 

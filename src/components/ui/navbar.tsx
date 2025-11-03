@@ -248,14 +248,14 @@ export function Navbar() {
       </div>
 
       {/* scroll progress bar */}
-      {scrollProgress > 0 && (
+      {/* {scrollProgress > 0 && (
         <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gray-200">
           <div
             className="h-[3px] bg-brand-red transition-all duration-75"
             style={{ width: `${scrollProgress}% ` }}
           />
         </div>
-      )}
+      )} */}
 
       {/* Mobile menu (full-screen) */}
       {isOpen && (
