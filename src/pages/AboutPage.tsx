@@ -3,6 +3,9 @@ import SectionTitle from "@/components/SectionTitle";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import styled from "styled-components";
 import AboutSection from "./AboutSection";
+import { useTeamMembers } from "@/lib/types/LandingPage";
+import { toast } from "sonner";
+import TeamSkeleton from "@/Loaders/about-us/TeamSkeleton";
 
 const StyledTeamWrapper = styled.div`
   .main {
@@ -140,424 +143,25 @@ const StyledTeamWrapper = styled.div`
   }
 `;
 const AboutPage = () => {
-  // Scroll to top on page load
+  const {
+    data: members,
+    isLoading: memberLoading,
+    isError: memberError,
+    error: memberErr,
+  } = useTeamMembers();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const teamMembers = [
-    {
-      name: "Mr. Mohammed Mustafa",
-      position: "Founder",
-      image: "https://vsourceoverseas.com/uploads/about_team/1698599558.jpg",
-      bio: "VSOURCE COMPANY",
-    },
-    {
-      name: "Mr. Nagender Rao",
-      position: "Managing Director",
-      image: "https://vsourceoverseas.com/uploads/about_team/dfg354d53.jpeg",
-      bio: "12 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Charan Teja",
-      position: "CEO",
-      image: "https://vsourceoverseas.com/uploads/about_team/sddsccDCD.jpeg",
-      bio: "8 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Y Ranjith",
-      position: "CFO",
-      image: "https://vsourceoverseas.com/uploads/about_team/YR.jpg",
-      bio: "12 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Sai Siva Nag",
-      position: "Friend of Mr. Mustafa",
-      image: "https://vsourceoverseas.com/uploads/about_team/SIVASIR.jpeg",
-      bio: "20 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Shaik Yasin",
-      position: "Executive Director",
-      image: "https://vsourceoverseas.com/uploads/about_team/1698618435.jpg",
-      bio: "8 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Akram",
-      position: "Director, Admissions",
-      image: "https://vsourceoverseas.com/uploads/about_team/AKRAM.jpeg",
-      bio: "12 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Satyam Tomer",
-      position: "Chief Technical Officer",
-      image: "https://vsourceoverseas.com/uploads/about_team/team9.jpg",
-      bio: "12 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Virendra Singh",
-      position: "Vice President",
-      image: "https://vsourceoverseas.com/uploads/about_team/team2.jpg",
-      bio: "VSOURCE COMPANY",
-    },
-    {
-      name: "Mr. Vijay Kumar",
-      position: "Chief Advisor",
-      image: "https://vsourceoverseas.com/uploads/about_team/team10.jpg",
-      bio: "VSOURCE GROUP",
-    },
-    {
-      name: "Mr. Arun",
-      position: "Chief Operating Officer",
-      image: "https://vsourceoverseas.com/uploads/about_team/team14.jpg",
-      bio: "10 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Tejesh Naidu",
-      position: "Director, Operations",
-      image: "https://vsourceoverseas.com/uploads/about_team/TEJA.gif",
-      bio: "VSOURCE COMPANY",
-    },
-    {
-      name: "Mr. Rajashekar",
-      position: "Director, Education",
-      image: "https://vsourceoverseas.com/uploads/about_team/team15.jpg",
-      bio: "9 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Habib",
-      position: "Director, Marketing",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/GVGCFCFVGHBHJBHJB.jpeg",
-      bio: "10 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mrs. Pushpalatha Reddy",
-      position: "Director, Overseas",
-      image: "https://vsourceoverseas.com/uploads/about_team/PUSHPALATHA.jpg",
-      bio: "7 YEARS WITH VSOURCE",
-    },
-    {
-      name: "Mr. Jagan Mohan",
-      position: "Director, Fintech",
-      image: "https://vsourceoverseas.com/uploads/about_team/JAGAN.jpeg",
-      bio: "100% EDUCATION LOANS",
-    },
-    {
-      name: "Dr. Giorgi Mikadze",
-      position: "Director, Services. LLC",
-      image: "https://vsourceoverseas.com/uploads/about_team/team19.jpg",
-      bio: "Based in Georgia, specializing in services management.",
-    },
-    {
-      name: "Dr. Mariam Kandelaki",
-      position: "Director, Student Welfare",
-      image: "https://vsourceoverseas.com/uploads/about_team/mariam.jpeg",
-      bio: "Focused on student welfare initiatives in Georgia.",
-    },
-    {
-      name: "Mr. Sreenath Reddy",
-      position: "Director, Administration",
-      image: "https://vsourceoverseas.com/uploads/about_team/SREENATH.jpeg",
-      bio: "Leads administrative operations at VSOURCE Company.",
-    },
-    {
-      name: "Ms. K Chaithanya",
-      position: "HR",
-      image: "https://vsourceoverseas.com/uploads/about_team/SDVSVSV.jpeg",
-      bio: "Human Resources specialist at VSOURCE Company.",
-    },
-    {
-      name: "Mr. Narun Reddy",
-      position: "Head, Marketing",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG_20231218_225108.jpg",
-      bio: "Heads marketing operations for VSOURCE Varsity.",
-    },
-    {
-      name: "Ms. Navya",
-      position: "Head, Marketing",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG20231031161907.jpg",
-      bio: "Marketing lead for VSOURCE Overseas.",
-    },
-    {
-      name: "Ms. Deepika",
-      position: "Incharge, B.P.O",
-      image: "https://vsourceoverseas.com/uploads/about_team/1698855451.jpg",
-      bio: "Manages B.P.O operations at VSOURCE Fintech.",
-    },
+  if (memberError) {
+    toast.error("failed to load Members");
+    console.log("failed to load Members", memberErr);
+  }
 
-    {
-      name: "Ms. Radha",
-      position: "Branch Manager",
-      image: "https://vsourceoverseas.com/uploads/about_team/team11.jpg",
-      bio: "Branch Manager for Bengaluru operations.",
-    },
-    {
-      name: "Mr. Mahesh",
-      position: "B.P.O Incharge",
-      image: "https://vsourceoverseas.com/uploads/about_team/MMAHESH.jpeg",
-      bio: "Overseeing B.P.O operations at VSOURCE Overseas.",
-    },
-    {
-      name: "Mr. Kumar",
-      position: "Branch Manager",
-      image: "https://vsourceoverseas.com/uploads/about_team/team16.jpg",
-      bio: "Leading the Ongole branch.",
-    },
-    {
-      name: "Mr. Srinivas Chowdary",
-      position: "Branch Manager",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/KCJAHBH651566.jpeg",
-      bio: "Managing branch operations in Tirupati.",
-    },
-    {
-      name: "Mr. Srinadh Yadav",
-      position: "Branch Manager",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG_20240110_203715.jpg",
-      bio: "Branch Manager for Vijayawada.",
-    },
-    {
-      name: "Mr. Kiran Kumar",
-      position: "Branch Manager",
-      image: "https://vsourceoverseas.com/uploads/about_team/1698844684.jpg",
-      bio: "Heading the Vizag branch.",
-    },
-    {
-      name: "Ms. Nikhitha",
-      position: "Branch Manager",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG_20231202_140712.jpg",
-      bio: "Branch Manager for Dilsukhnagar.",
-    },
-    {
-      name: "Mr. Raj",
-      position: "Branch Manager",
-      image: "https://vsourceoverseas.com/uploads/about_team/IMG_3419.jpg",
-      bio: "Managing the Ameerpet branch.",
-    },
-    {
-      name: "Ms. Spandana",
-      position: "Branch Manager",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG20231031165409.jpg",
-      bio: "Branch Manager in Kukatpally.",
-    },
-    {
-      name: "Mrs. Tako",
-      position: "Administration",
-      image: "https://vsourceoverseas.com/uploads/about_team/tako.jpeg",
-      bio: "Part of the administrative team in Georgia.",
-    },
-    {
-      name: "Mr. Zaza",
-      position: "Administration",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/PHOTO-2023-12-18-18-53-31.jpg",
-      bio: "Administrative team member in Georgia.",
-    },
-    {
-      name: "Mr. Aleksandre",
-      position: "Accountant",
-      image: "https://vsourceoverseas.com/uploads/about_team/21team.jpg",
-      bio: "Accountant based in Georgia.",
-    },
-    {
-      name: "Ms. Nino",
-      position: "Administration",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/kscjanusdbjnj.jpeg",
-      bio: "Administrative team member in Georgia.",
-    },
-    {
-      name: "Mr. Dimitrilp",
-      position: "Administration",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/PHOTO-2023-12-20-12-57-15.jpg",
-      bio: "Administrative team member in Georgia.",
-    },
-    {
-      name: "Mr. Noorbaz Khan Qaderi",
-      position: "Administration",
-      image: "https://vsourceoverseas.com/uploads/about_team/team22Copy1.jpg",
-      bio: "Administrative team member in Russia.",
-    },
-    {
-      name: "Mrs. Shaista Ashraf",
-      position: "Head of Admissions",
-      image: "https://vsourceoverseas.com/uploads/about_team/1684232284.jpg",
-      bio: "Oversees admissions in UAE and Saudi Arabia.",
-    },
-    {
-      name: "Mr. Nithin",
-      position: "Senior Associate",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG_20231220_093457.jpg",
-      bio: "Senior Associate at VSOURCE Overseas.",
-    },
-    {
-      name: "Mr. Shaik Gafoor",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/GAFOOR.gif",
-      bio: "Senior Associate at VSOURCE Overseas.",
-    },
-    {
-      name: "Mr. Venkata Sasikumar",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/SASI.jpeg",
-      bio: "Senior Associate at VSOURCE Varsity.",
-    },
-    {
-      name: "Mr. Mahesh Patil",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/MAHESH.jpeg",
-      bio: "Senior Associate at VSOURCE Overseas.",
-    },
-    {
-      name: "Mr. Bhanu Sai Prakash",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/BHANU.JPG",
-      bio: "Senior Associate at VSOURCE Overseas.",
-    },
-    {
-      name: "Mr. Radha Krishna",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/RADHA.jpeg",
-      bio: "Senior Associate at VSOURCE Varsity.",
-    },
-    {
-      name: "Mr. Venkat",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/VENKAT.jpeg",
-      bio: "Senior Associate at VSOURCE Fintech.",
-    },
-    {
-      name: "Mr. Shaik Moulali",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/MOU.jpeg",
-      bio: "Senior Associate at VSOURCE Fintech.",
-    },
-    {
-      name: "Mr. Nagaraju",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/NAGARAJU.jpeg",
-      bio: "Senior Associate at VSOURCE Fintech.",
-    },
-    {
-      name: "Ms. Kavyasree",
-      position: "Senior Associate",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/IMG-20231201-WA0011-removebg-preview.png",
-      bio: "Senior Associate at VSOURCE Fintech.",
-    },
-    {
-      name: "Mr. Mahesh Goud",
-      position: "Senior Associate",
-      image: "https://vsourceoverseas.com/uploads/about_team/MAHESHGOUD.jpeg",
-      bio: "Senior Associate at VSOURCE Fintech.",
-    },
-
-    {
-      name: "Mr. RAKESH",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/RAKESH.jpeg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. SHAIK MUNEER",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/MUNEER.jpeg",
-      bio: "Associated with VSOURCE VARSITY.",
-    },
-    {
-      name: "Mr. M PAVAN",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/MPAVAN.jpeg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Ms. DIVYA",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/DIVYA.jpeg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. ATHAR PASHA",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/ATHAR.jpeg",
-      bio: "Associated with VSOURCE VARSITY.",
-    },
-    {
-      name: "Mr. NAGA VENKATESH",
-      position: "Jr. ASSOCIATE",
-      image:
-        "https://vsourceoverseas.com/uploads/about_team/nagavenkatesh.jpeg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. S PAVAN",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/SPAVAN.jpeg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. BHANU SAIRAM",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/BHANUSAIRAM.jpeg",
-      bio: "Associated with VSOURCE VARSITY.",
-    },
-    {
-      name: "Mr. VIJAY",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/VIJAY.jpg",
-      bio: "Associated with VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. SUBRAHMANYAM",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/SUBR.jpeg",
-      bio: "Associated with VSOURCE VARSITY.",
-    },
-    {
-      name: "Mr. LAKSHMAN",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/LAKSHMAN.jpeg",
-      bio: "Associated with VSOURCE FINTECH.",
-    },
-    {
-      name: "Mr. MOHAN KRISHNA",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/MOHAN.jpeg",
-      bio: "Associated with VSOURCE FINTECH.",
-    },
-    {
-      name: "Mr. RAMU",
-      position: "Jr. ASSOCIATE",
-      image: "https://vsourceoverseas.com/uploads/about_team/RAMU.jpeg",
-      bio: "Associated with VSOURCE FINTECH.",
-    },
-    {
-      name: "Mr. FAHAD",
-      position: "DIGITAL MARKETING",
-      image: "https://vsourceoverseas.com/uploads/about_team/Snapseed.jpeg",
-      bio: "Specialist in digital marketing for VSOURCE OVERSEAS.",
-    },
-    {
-      name: "Mr. VAMSHI",
-      position: "DIGITAL MARKETING",
-      image: "https://vsourceoverseas.com/uploads/about_team/VAMSHI.jpeg",
-      bio: "Specialist in digital marketing for VSOURCE VARSITY.",
-    },
-    {
-      name: "Mr. Purushotham Reddy",
-      position: "GROUND MARKETING",
-      image: "https://vsourceoverseas.com/uploads/about_team/team24.jpg",
-      bio: "Ground marketing expert for Andhra & Telangana.",
-    },
-  ];
+  if (memberLoading || !members) {
+    return <TeamSkeleton />;
+  }
 
   return (
     <>
@@ -606,50 +210,59 @@ const AboutPage = () => {
         <section className="py-16 md:py-24">
           <div className="w-full max-w-[1400px] mx-auto px-4">
             <SectionTitle
-              title="Our Management Team"
-              subtitle="Meet the experts who make Vsource Company a trusted name in educational consultancy"
+              title={members?.title || "Our Management Team"}
+              subtitle={
+                members?.description ||
+                "Meet the experts who make Vsource Company a trusted name in educational consultancy"
+              }
             />
             <StyledTeamWrapper>
               <div className="main">
-                {teamMembers.map((member, index) => {
-                  const delay = 50 + index * 100; // 100ms base + 100ms per index
-                  return (
-                    <div
-                      className="profile-card"
-                      key={index}
-                      data-aos="fade-up"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-delay={delay}
-                    >
-                      <div className="img">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          data-aos="flip-left"
-                          data-aos-anchor-placement="center-bottom"
-                          data-aos-delay={delay}
-                        />
+                {members &&
+                  members?.members &&
+                  members?.members?.map((member, index) => {
+                    const delay = 50 + index * 100; // 100ms base + 100ms per index
+                    return (
+                      <div
+                        className="profile-card"
+                        key={index}
+                        data-aos="fade-up"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-delay={delay}
+                      >
+                        <div className="img">
+                          <img
+                            src={`${import.meta.env.VITE_CMS_GLOBALURL}${
+                              member?.image?.url
+                            }`}
+                            alt={member.name}
+                            data-aos="flip-left"
+                            data-aos-anchor-placement="center-bottom"
+                            data-aos-delay={delay}
+                          />
+                        </div>
+                        <div className="caption">
+                          <h3
+                            data-aos="fade-right"
+                            data-aos-anchor-placement="center-bottom"
+                            data-aos-delay={delay}
+                          >
+                            {member?.name || "failed to load"}
+                          </h3>
+                          <p
+                            data-aos="fade-right"
+                            data-aos-anchor-placement="center-bottom"
+                            data-aos-delay={delay}
+                          >
+                            {member?.position || "failed to load"}
+                          </p>
+                        </div>
+                        <div className="extra-info">
+                          {member?.bio || "failed to load"}
+                        </div>
                       </div>
-                      <div className="caption">
-                        <h3
-                          data-aos="fade-right"
-                          data-aos-anchor-placement="center-bottom"
-                          data-aos-delay={delay}
-                        >
-                          {member.name}
-                        </h3>
-                        <p
-                          data-aos="fade-right"
-                          data-aos-anchor-placement="center-bottom"
-                          data-aos-delay={delay}
-                        >
-                          {member.position}
-                        </p>
-                      </div>
-                      <div className="extra-info">{member.bio}</div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </StyledTeamWrapper>
           </div>

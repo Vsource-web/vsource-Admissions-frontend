@@ -1,16 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { Link as RouterLink } from "react-router-dom";
+import { useReducedMotion } from "framer-motion";
 import AboutSection from "./AboutSection";
 import Accreditation from "./AccreditationSection";
-// import Journey from "@/components/home/Journey";
 import TrustSection from "@/components/home/TrustSection";
 import CertificateSlider from "@/components/home/CertificateSlider";
 import VideoSection from "@/components/VideoSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
-import CertificateBentoGrid from "@/components/home/CertificateSlider";
-// import JourneyCard from "@/utils/JourneyCard";
-
 import Journey from "@/pages/Journet.tsx";
 
 type Slide = {
@@ -231,7 +226,7 @@ function Home() {
 
       <TrustSection />
 
-      <CertificateBentoGrid />
+      <CertificateSlider />
 
       <VideoSection />
 
