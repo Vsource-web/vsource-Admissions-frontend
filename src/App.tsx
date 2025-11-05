@@ -4,23 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "@/components/layout/layout";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-// import PartnerDetails from "./components/layout/PartnerDetails";
-import ContactBar from "./components/ContactBar";
 import { Footer } from "./components/ui/footer";
-import GoVirtual from "./services/GoVirtual";
-// import { Navbar } from "./components/ui/navbar";
-import EducationLoan from "./pages/EducationLoan";
 import ScrollToTop from "./ScrollToTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import DelayedPopup from "./components/DelayedPopup";
 import Navbar from "./components/ui/navbar";
-import AboutSection from "./pages/AboutSection";
-import AboutPage from "./pages/AboutPage";
 import { Toaster } from "sonner";
 import UniversityGeorgia from "./pages/University-Pages/UniversityGeorgia";
 import UniversityKenWalker from "./pages/University-Pages/UniversityKenWalker";
@@ -29,13 +20,28 @@ import UniversityIliaState from "./pages/University-Pages/UniversityIliaState";
 import UniversityAkakiTsereteliState from "./pages/University-Pages/UniversityAkakiTsereteliState";
 import UniversityBelgorodStateNationalResearch from "./pages/University-Pages/UniversityBelgorodStateNationalResearch";
 import HeroLoader from "./components/loaders/HeroLoader";
+
+const Home = lazy(() => import("./pages/Home"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+=======
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Disclaimer from "./pages/Disclaimer";
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const View360 = lazy(() => import("./pages/View360"));
+const Contact = lazy(() => import("./pages/Contact"));
+const ContactBar = lazy(() => import("./components/ContactBar"));
+const GoVirtual = lazy(() => import("./services/GoVirtual"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchInterval: false,
+      retry: false,
+    },
+  },
+});
 
 const AppContent = () => {
   const [showForm, setShowForm] = useState(false);
@@ -45,14 +51,14 @@ const AppContent = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY + window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      if (scrollTop / docHeight >= 0.2) {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0 && scrollTop / docHeight >= 0.2) {
         setShowForm(true);
         window.removeEventListener("scroll", handleScroll);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -65,22 +71,6 @@ const AppContent = () => {
     AOS.refresh();
   }, [location.pathname]);
 
-  // Show form after scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY + window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      if (
-        scrollTop / docHeight >= 0.2 &&
-        !localStorage.getItem("vsource_form_submitted")
-      ) {
-        setShowForm(true);
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <Layout>
       <ScrollToTop />

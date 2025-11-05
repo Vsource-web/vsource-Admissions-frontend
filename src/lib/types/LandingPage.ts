@@ -103,10 +103,26 @@ export const fetchMembers = async () => {
   return res?.data?.data?.about[0];
 };
 
+export const fetchAboutBanner = async () => {
+  const url = `${
+    import.meta.env.VITE_CMS_GLOBALURL
+  }/api/about-us?populate[about][on][about-us.hero][populate][banner][fields][0]=url&populate[about][on][about-us.hero][populate][banner][fields][1]=alternativeText`;
+  const res = await axios.get(url);
+  return res?.data?.data?.about[0];
+};
+
 export const useTeamMembers = () => {
   return useQuery<Members>({
     queryKey: ["members"],
     queryFn: fetchMembers,
+    staleTime: Infinity,
+  });
+};
+
+export const useAboutBanner = () => {
+  return useQuery<AboutUsBanner>({
+    queryKey: ["bannerAbout"],
+    queryFn: fetchAboutBanner,
     staleTime: Infinity,
   });
 };
@@ -165,7 +181,6 @@ export interface Testimonial {
   feedback: string;
   image: Image;
 }
-
 
 //! Service
 

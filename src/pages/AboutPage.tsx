@@ -3,9 +3,10 @@ import SectionTitle from "@/components/SectionTitle";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import styled from "styled-components";
 import AboutSection from "./AboutSection";
-import { useTeamMembers } from "@/lib/types/LandingPage";
+import { useAboutBanner, useTeamMembers } from "@/lib/types/LandingPage";
 import { toast } from "sonner";
 import TeamSkeleton from "@/Loaders/about-us/TeamSkeleton";
+import BannerSkeleton from "@/Loaders/about-us/BannerSkeleton";
 
 const StyledTeamWrapper = styled.div`
   .main {
@@ -143,6 +144,8 @@ const StyledTeamWrapper = styled.div`
   }
 `;
 const AboutPage = () => {
+  const { data: aboutData, isLoading, isError, error } = useAboutBanner();
+
   const {
     data: members,
     isLoading: memberLoading,
@@ -154,9 +157,18 @@ const AboutPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  if (isError) {
+    toast.error(error?.message || "failed to load banner");
+    console.log("failed to load banner", error);
+  }
+
   if (memberError) {
-    toast.error("failed to load Members");
+    toast.error(memberErr?.message || "failed to load Members");
     console.log("failed to load Members", memberErr);
+  }
+
+  if (isLoading || !aboutData) {
+    return <BannerSkeleton />;
   }
 
   if (memberLoading || !members) {

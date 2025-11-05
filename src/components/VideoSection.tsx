@@ -1,28 +1,83 @@
 import { useState } from "react";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import SectionTitle from "./SectionTitle";
 import AnimateOnScroll from "./AnimateOnScroll";
+import { Company } from "@/lib/types/LandingPage";
+
+const fetchCompanyVideo = async () => {
+  const { data } = await axios.get(
+    `${
+      import.meta.env.VITE_CMS_GLOBALURL
+    }/api/landing-pages?populate[Sections][on][blocks.company][populate][thumbnail][fields][0]=url&populate[Sections][on][blocks.company][populate][thumbnail][fields][1]=alternativeText&populate[Sections][on][blocks.company][populate][video][fields][0]=url&populate[Sections][on][blocks.company][populate][video][fields][1]=alternativeText`
+  );
+
+  return data.data[0].Sections[0];
+};
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const {
+    data: video,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<Company>({
+    queryKey: ["company"],
+    queryFn: fetchCompanyVideo,
+    staleTime: Infinity,
+  });
 
   const handlePlay = () => {
     setIsPlaying(true);
   };
 
+  if (isError) {
+    toast.error("failed to load");
+    console.log("failed to load", error);
+    return null;
+  }
+
+  if (isLoading || !video) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <section className="py-9 md:py-22 bg-gray-50">
       <div className="w-full max-w-[1400px] mx-auto px-4">
         <SectionTitle
-          title="Company Video"
-          subtitle="Get to know us better through our corporate presentation"
+          title={video?.title || "Company Video"}
+          subtitle={
+            video?.description ||
+            "Get to know us better through our corporate presentation"
+          }
         />
 
         <AnimateOnScroll>
           <div className="mt-10 relative overflow-hidden rounded-xl shadow-2xl max-w-4xl mx-auto aspect-video">
             {isPlaying ? (
+              // <iframe
+              //   className="w-full h-full"
+              //   src={
+              //     `${import.meta.env.VITE_CMS_GLOBALURL}${video?.video?.url}` ||
+              //     "https://www.youtube.com/embed/IbjoEr-lTuw?autoplay=1"
+              //   }
+              //   title="Company Video"
+              //   frameBorder="0"
+              //   allow="autoplay; encrypted-media"
+              //   allowFullScreen
+              // />
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/IbjoEr-lTuw?autoplay=1"
+                src={
+                  video?.video?.url
+                    ? `${import.meta.env.VITE_CMS_GLOBALURL}${
+                        video?.video?.url
+                      }`
+                    : "https://www.youtube.com/embed/IbjoEr-lTuw?autoplay=1"
+                }
                 title="Company Video"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
@@ -34,7 +89,13 @@ const VideoSection = () => {
                 onClick={handlePlay}
               >
                 <img
-                  src="https://img.youtube.com/vi/IbjoEr-lTuw/maxresdefault.jpg"
+                  src={
+                    video?.thumbnail?.url
+                      ? `${import.meta.env.VITE_CMS_GLOBALURL}${
+                          video?.thumbnail?.url
+                        }`
+                      : "https://img.youtube.com/vi/IbjoEr-lTuw/maxresdefault.jpg"
+                  }
                   alt="Company Video Thumbnail"
                   className="w-full h-full object-cover"
                 />
