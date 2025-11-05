@@ -1,135 +1,175 @@
-// import UniversityLayout, { UniversityData } from "./UniversityLayout";
+// import { UniversityData } from "./UniversityTypes";
 
 import UniversityLayout, {
   UniversityData,
 } from "@/components/University/UniversityLayout";
 
-const universityKenWalker: UniversityData = {
+const universityData: UniversityData = {
   name: "University of Ken Walker International",
   city: "Tbilisi",
   country: "Georgia",
+
   recognitions: [
+    "NMC (National Medical Commission)",
     "WHO (World Health Organization)",
-    "NMC (National Medical Commission, India)",
-    "Accredited: Georgia Ministry of Education",
-    "EHEA (Bologna Process)",
+    "WFME Standard Medical Training",
+    "FAIMER Listed",
   ],
-  hero: "/images/universities/UniversityKenWalker/UniversityKenWalker.webp",
+  heroImg: "/images/universities/UniversityKenWalker/UniversityKenWalker.webp",
+  hero: "/images/universities/UniversityKenWalker/ken-walker-international-university.jpg",
   highlights: [
-    { label: "Established", value: "2019" },
-    { label: "Program", value: "MBBS / MD (6 Years)" },
-    { label: "Medium", value: "English" },
-    { label: "Intakes", value: "September / February" },
+    { label: "Founded", value: "1994" },
+    { label: "Total Students", value: "6000+" },
+    { label: "International Students", value: "2000+" },
+    { label: "Program Duration", value: "6 Years (Incl. Internship)" },
+    { label: "Teaching Language", value: "English" },
+    { label: "Degree Awarded", value: "MD (Equivalent to MBBS)" },
   ],
+
   fees: {
     currency: "USD",
-    fxRate: 83,
+    fxRates: {
+      USD: 0.012,
+      GEL: 0.034,
+      RUB: 1.08,
+    },
+    includes: ["Tuition Fee", "Hostel Fee", "Medical Insurance"],
+    excludes: [
+      "Food & mess charges",
+      "Books & stationeries",
+      "Airfare/Travel",
+      "Visa charges",
+    ],
     rows: [
       {
         year: 1,
-        tuition: 5800,
-        hostel: 2500,
-        insurance: 150,
-        other: 200,
-        notes: "Admission + Registration",
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
       },
-      { year: 2, tuition: 5800, hostel: 2500, insurance: 150, other: 200 },
-      { year: 3, tuition: 5800, hostel: 2500, insurance: 150, other: 200 },
-      { year: 4, tuition: 5800, hostel: 2500, insurance: 150, other: 200 },
-      { year: 5, tuition: 5800, hostel: 2500, insurance: 150, other: 200 },
-      { year: 6, tuition: 5800, hostel: 2500, insurance: 150, other: 200 },
-    ],
-    includes: ["Tuition Fee", "Hostel Fee", "Medical Insurance"],
-    excludes: [
-      "Food & Mess",
-      "Travel & Airfare",
-      "Visa Charges",
-      "Books & Stationery",
+      {
+        year: 2,
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
+      },
+      {
+        year: 3,
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
+      },
+      {
+        year: 4,
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
+      },
+      {
+        year: 5,
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
+      },
+      {
+        year: 6,
+        tuition: 450000,
+        hostel: 85000,
+        insurance: 25000,
+        other: 20000,
+      },
     ],
   },
+
   programStructure: [
     {
-      title: "Years 1–2",
+      title: "Admission Requirements",
       points: [
-        "Basic Medical Sciences (Anatomy, Physiology, Biochemistry)",
-        "Intro to Clinical Skills and Research Foundation",
+        "Minimum 50% in PCB (General Category)",
+        "Minimum 40% for Reserved Category",
+        "NEET qualification mandatory",
+        "17+ years of age at admission",
       ],
     },
     {
-      title: "Years 3–5",
+      title: "Admission Process",
       points: [
-        "Core Clinical Rotations (Medicine, Surgery, Pediatrics, OB-GYN)",
-        "Elective & Subspecialty Rotations",
-      ],
-    },
-    {
-      title: "Year 6",
-      points: [
-        "Full-year Clinical Internship (hospital-based)",
-        "Preparation for NEXT/USMLE and other licensing exams",
+        "Submit online application & documents",
+        "Receive admission confirmation",
+        "Pay university registration fee",
+        "Receive invitation & apply for visa",
+        "Fly to Georgia & join orientation",
       ],
     },
   ],
+
   hostelCity: {
     hostel: [
-      "Separate hostels for boys & girls, on/near campus",
-      "Fully furnished, Wi-Fi, laundry, 24/7 security",
-      "Indian mess & vegetarian options",
-      "Approx. $200–$250/month for living expenses",
+      "Modern campus in Tbilisi",
+      "Affordable hostel & food options",
+      "Indian mess & grocery availability",
     ],
     city: [
-      "Located in student-friendly, cosmopolitan Tbilisi",
-      "Vibrant social life, safe and accessible city",
-      "Public transport, shopping, cafes all nearby",
+      "Clinical practice in partner hospitals",
+      "Indian festival celebrations & student clubs",
+      "Safe and vibrant city environment",
     ],
   },
-  faqs: [
-    {
-      q: "Is NEET required?",
-      a: "Yes, Indian students must qualify NEET for admission and future practice in India.",
-    },
-    {
-      q: "What is the teaching language?",
-      a: "Medium of instruction is fully English for international students.",
-    },
-    {
-      q: "Are degrees globally recognized?",
-      a: "Yes. The degree is recognized by WHO, NMC (India) and globally for licensing.",
-    },
-    {
-      q: "What are the intakes?",
-      a: "Admissions start in September and February each cycle.",
-    },
-    {
-      q: "Is clinical exposure provided?",
-      a: "Yes, from the early years through affiliated hospitals and simulation labs.",
-    },
-  ],
+
   gallery: [
-    "/images/universities/UniversityKenWalker/1.jpg",
-    "/images/universities/UniversityKenWalker/30.jpg",
-    "/images/universities/UniversityKenWalker/class.jpg",
+    "/images/universities/UniversityKenWalker/ken-walker-international-university-mobile.jpg",
+    "/images/universities/UniversityKenWalker/library.webp",
     "/images/universities/UniversityKenWalker/Ken-Walker-International-University-Practical-room.webp",
     "/images/universities/UniversityKenWalker/Ken-Walker-International-University.png",
-    "/images/universities/UniversityKenWalker/ken.ea8d97defde9953f262b.webp",
-    "/images/universities/UniversityKenWalker/library.webp",
-    "/images/universities/UniversityKenWalker/maxresdefault.jpg",
+    "/images/universities/UniversityKenWalker/30.jpg",
+    "/images/universities/UniversityKenWalker/1.jpg",
+    "/images/universities/UniversityKenWalker/class.jpg",
     "/images/universities/UniversityKenWalker/slider1.png",
   ],
-  about:
-    "Founded in 2019, University of Ken Walker International (KWIU) in Tbilisi, Georgia is known for modern medical education, US-inspired curriculum, and global faculty. It offers 6-year MD/MBBS entirely in English, recognized by WHO, NMC, and the Georgian Ministry of Education. Open to students from 30+ countries, with a strong focus on clinical skills and research readiness.",
+
   hostelImages: [
     "/images/universities/UniversityKenWalker/hostel.png",
-    "/images/universities/UniversityKenWalker/hostel12.png",
     "/images/universities/UniversityKenWalker/hostell1.png",
+    "/images/universities/UniversityKenWalker/hostel12.png",
   ],
-  infraImages: [
-    "/images/universities/UniversityKenWalker/class.jpg",
-    "/images/universities/UniversityKenWalker/Ken-Walker-International-University-Practical-room.webp",
-    "/images/universities/UniversityKenWalker/library.webp",
-  ],
-};
 
+  infraImages: [
+    "/images/universities/UniversityKenWalker/Ken-Walker-International-University-Practical-room.webp",
+    "/images/universities/UniversityKenWalker/Ken-Walker-International-University.png",
+    "/images/universities/UniversityKenWalker/maxresdefault.jpg",
+  ],
+
+  faqs: [
+    {
+      q: "Is NEET qualification required?",
+      a: "Yes, Indian students must qualify NEET to pursue MBBS at Ken Walker International University.",
+    },
+    {
+      q: "What is the medium of instruction?",
+      a: "The entire program is taught in English.",
+    },
+    {
+      q: "Are the degrees recognized internationally?",
+      a: "Yes, the degrees are recognized by NMC, WHO, WFME, and FAIMER.",
+    },
+    {
+      q: "What is the program duration?",
+      a: "The MD program is 6 years including internship.",
+    },
+  ],
+
+  about: `
+University of Ken Walker International is a reputed medical university in Tbilisi, Georgia, known for its high-quality English-medium MD program. 
+The university combines modern medical education, international faculty, strong clinical exposure, and a student-friendly environment.
+
+The campus provides modern labs, simulation centers, e-learning facilities, and a multicultural environment, making it a preferred destination for Indian MBBS aspirants.
+  `,
+};
 export default function UniversityKenWalker() {
-  return <UniversityLayout university={universityKenWalker} />;
+  return <UniversityLayout university={universityData} />;
 }

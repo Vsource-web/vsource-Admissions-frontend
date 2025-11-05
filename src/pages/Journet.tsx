@@ -21,8 +21,10 @@ type JourneyCardProps = {
 
 const projects = [
   {
-    desktop: "/images/universities/university-of-georgia.jpg",
-    mobile: "/images/universities/university-of-georgia-mobile.jpg",
+    desktop:
+      "/images/universities/University-of-Georgia/university-of-georgia.jpg",
+    mobile:
+      "/images/universities/University-of-Georgia/university-of-georgia-mobile.jpg",
     caption: "The University Of Georgia",
     description:
       "One of Georgia’s leading medical universities, offering internationally recognized MBBS programs with modern infrastructure and global exposure.",
@@ -31,9 +33,10 @@ const projects = [
     color: "#BBACAF",
   },
   {
-    desktop: "/images/universities/ken-walker-international-university.jpg",
+    desktop:
+      "/images/universities/UniversityKenWalker/ken-walker-international-university.jpg",
     mobile:
-      "/images/universities/ken-walker-international-university-mobile.jpg",
+      "/images/universities/UniversityKenWalker/ken-walker-international-university-mobile.jpg",
     caption: "Ken Walker International University",
     description:
       "Known for its American-style curriculum and English-taught MBBS programs, KWU prepares students for international medical licensing exams.",
@@ -42,8 +45,10 @@ const projects = [
     color: "#977F6D",
   },
   {
-    desktop: "/images/universities/Tbilisi-University.webp",
-    mobile: "/images/universities/Tbilisi-State-Medical-University-mobile.jpg",
+    desktop:
+      "/images/universities/Tbilisi-StateMedical-University/Tbilisi-University.webp",
+    mobile:
+      "/images/universities/Tbilisi-StateMedical-University/Tbilisi-State-Medical-University-mobile.jpg",
     caption: "Tbilisi State Medical University",
     description:
       "A prestigious government university with over 100 years of excellence in medical education and strong clinical partnerships across Europe.",
@@ -52,8 +57,9 @@ const projects = [
     color: "#B62429",
   },
   {
-    desktop: "/images/universities/ilia-state.jpg",
-    mobile: "/images/universities/ilia-state-university-mobile.jpg",
+    desktop: "/images/universities/Ilia-State-University/ilia-state.jpg",
+    mobile:
+      "/images/universities/Ilia-State-University/ilia-state-university-mobile.jpg",
     caption: "Ilia State University",
     description:
       "A progressive institution in Tbilisi offering high-quality medical and research programs with modern facilities and global collaborations.",
@@ -62,8 +68,10 @@ const projects = [
     color: "#BBACAF",
   },
   {
-    desktop: "/images/universities/Akaki-Tsereteli-State-University-scaled.jpg",
-    mobile: "/images/universities/Akaki-Tsereteli-State-University-mobile.jpg",
+    desktop:
+      "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-scaled.jpg",
+    mobile:
+      "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-mobile.jpg",
     caption: "Akaki Tsereteli State University",
     description:
       "Renowned for its affordable education and experienced faculty, ATSU is among the oldest and most respected universities in Georgia.",
@@ -72,9 +80,10 @@ const projects = [
     color: "#C2491D",
   },
   {
-    desktop: "/images/universities/Belgorod-State-University.jpg",
+    desktop:
+      "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-University.jpg",
     mobile:
-      "/images/universities/Belgorod-State-National-Research-University-mobile.jpg",
+      "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-National-Research-University-mobile.jpg",
     caption: "Belgorod State National Research University",
     description:
       "A top-ranked Russian university focusing on innovation and advanced medical training, recognized by WHO and MCI for its MBBS program.",
