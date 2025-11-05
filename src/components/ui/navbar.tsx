@@ -133,7 +133,7 @@ export function Navbar() {
       )}
     >
       {/* top row */}
-      <div className="w-full max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
+      <div className="w-full max-w-[1400px] mx-auto px-6 flex items-center justify-between gap-4">
         {/* Logos */}
         <Link to="/" className="flex items-center gap-2 relative z-20">
           <img
@@ -143,7 +143,7 @@ export function Navbar() {
           />
           <img
             alt="Vsource Logo"
-            className="h-16 md:h-20 w-auto object-contain rounded-xl"
+            className="h-16 md:h-18 w-auto object-contain rounded-xl"
             src="/images/20 years logo-01.png"
           />
         </Link>
@@ -243,7 +243,11 @@ export function Navbar() {
           onClick={() => setIsOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isOpen ? (
+            <X size={40} strokeWidth={3} />
+          ) : (
+            <Menu size={40} strokeWidth={4} />
+          )}
         </button>
       </div>
 
@@ -267,7 +271,7 @@ export function Navbar() {
           {/* top bar */}
           <div className="w-full border-b">
             <div className="w-full max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-              <Link
+              {/* <Link
                 to="/"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3"
@@ -282,13 +286,25 @@ export function Navbar() {
                   alt="20 Years"
                   className="h-12 w-auto object-contain"
                 />
+              </Link> */}
+              <Link to="/" className="flex items-center gap-2 relative z-20">
+                <img
+                  alt="Vsource Logo"
+                  className="h-16 md:h-20 w-auto object-contain rounded-xl"
+                  src="/images/vsourcess.png"
+                />
+                <img
+                  alt="Vsource Logo"
+                  className="h-16 md:h-18 w-auto object-contain rounded-xl"
+                  src="/images/20 years logo-01.png"
+                />
               </Link>
               <button
                 aria-label="Close menu"
                 className="text-gray-800 hover:text-red-600"
                 onClick={() => setIsOpen(false)}
               >
-                <X className="h-6 w-6" />
+                <X size={40} strokeWidth={3} />
               </button>
             </div>
           </div>
@@ -323,10 +339,10 @@ export function Navbar() {
 
               {/* Accordion for MBBS-ABROAD */}
               <MobileAccordion label="MBBS-ABROAD">
-                <div className="space-y-4">
+                <div className="space-y-3 pl-2">
                   {CATEGORIES.map((c) => (
                     <div key={c.key}>
-                      <div className="mt-2 mb-1 text-xs font-semibold uppercase text-gray-500">
+                      <div className="mt-1 mb-1 text-[11px] font-semibold uppercase text-gray-500">
                         {c.label}
                       </div>
                       <div className="space-y-1">
@@ -336,7 +352,7 @@ export function Navbar() {
                             to={u.to}
                             onClick={() => setIsOpen(false)}
                             className={cn(
-                              "block py-2 text-sm transition-colors",
+                              "block py-2 text-[15px] font-medium transition-colors",
                               isActive(u.to)
                                 ? "text-red-600"
                                 : "text-gray-800 hover:text-red-600"
@@ -412,7 +428,7 @@ function MobileAccordion({
     <div className="rounded-2xl border border-gray-200">
       <button
         type="button"
-        className="w-full flex items-center justify-between px-4 py-3 font-semibold text-gray-900"
+        className="w-full flex items-center justify-between px-3 py-3 font-semibold text-gray-900"
         onClick={() => setOpen((v) => !v)}
       >
         {label}
@@ -426,7 +442,7 @@ function MobileAccordion({
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         )}
       >
-        <div className="overflow-hidden px-4 pb-4">{children}</div>
+        <div className="overflow-hidden px-4">{children}</div>
       </div>
     </div>
   );

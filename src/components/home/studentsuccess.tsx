@@ -148,7 +148,7 @@ const StudentWall = () => {
             students?.students_images.map((img, index) => (
               <img
                 key={img?.id || index}
-                src={`${import.meta.env.VITE_CMS_GLOBALURL}${img?.url}`}
+                src={`${img?.url}`}
                 alt={`Student ${index + 1}`}
               />
             ))}

@@ -1,9 +1,9 @@
-// import styles from "./page.module.css";
+import styles from "@/components/home/page.module.css";
 import JourneyCard from "@/utils/JourneyCard";
 import { useScroll } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
-import styles from "@/utils/style.module.css";
+// import styles from "@/";
 
 type JourneyCardProps = {
   i: any;

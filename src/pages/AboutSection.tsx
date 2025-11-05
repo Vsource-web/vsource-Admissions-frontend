@@ -183,9 +183,7 @@ const AboutSection: React.FC = () => {
             >
               <div className="left-box">
                 <img
-                  src={`${import.meta.env.VITE_CMS_GLOBALURL}${
-                    stat?.image_or_gif?.url
-                  }`}
+                  src={`${stat?.image_or_gif?.url}`}
                   alt=""
                   className="icon"
                 />

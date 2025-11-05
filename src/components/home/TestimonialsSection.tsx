@@ -113,8 +113,8 @@ export default function TestimonialsSection() {
         style={{
           backgroundImage: `url('${
             data?.background_image?.url
-              ? import.meta.env.VITE_CMS_GLOBALURL + data?.background_image?.url
-              : "/images/badges/bg testssss.jpg"
+              ? data?.background_image?.url
+              : "/images/badges/bg test.jpg"
           }')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -140,9 +140,7 @@ export default function TestimonialsSection() {
               <div className="flex items-center gap-6">
                 <div className="flex-shrink-0">
                   <img
-                    src={`${import.meta.env.VITE_CMS_GLOBALURL}${
-                      currentTestimonial?.image?.url
-                    }`}
+                    src={`${currentTestimonial?.image?.url}`}
                     alt={currentTestimonial.name}
                     loading="lazy"
                     className="rounded-full w-36 h-36 object-cover shadow-lg"

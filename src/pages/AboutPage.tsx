@@ -232,9 +232,7 @@ const AboutPage = () => {
                       >
                         <div className="img">
                           <img
-                            src={`${import.meta.env.VITE_CMS_GLOBALURL}${
-                              member?.image?.url
-                            }`}
+                            src={`${member?.image?.url}`}
                             alt={member.name}
                             data-aos="flip-left"
                             data-aos-anchor-placement="center-bottom"
