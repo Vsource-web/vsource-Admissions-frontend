@@ -13,6 +13,7 @@ import { PopupModal } from "react-calendly";
 
 import Journey from "@/pages/Journet.tsx";
 import VideoCarousel from "@/components/home/VideoCarousel";
+import UniversityAnimation from "@/components/animation/UniversityAnimation";
 
 type Slide = {
   img: string;
@@ -274,10 +275,7 @@ function Home() {
 
       <Accreditation />
 
-      {/* <Journey /> */}
-      {/* <JourneyCard /> */}
-      <Journey />
-
+      <UniversityAnimation />
       <TrustSection />
 
       <CertificateSlider />
@@ -286,7 +284,6 @@ function Home() {
       <VideoCarousel />
       <TestimonialsSection />
 
-      {/* {showPopup && <DelayedPopup onMinimize={handleMinimize} />} */}
       <PopupModal
         url="https://calendly.com/server-vsourceoverseas/30min"
         open={openCalendly}
