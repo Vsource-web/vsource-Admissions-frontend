@@ -1,8 +1,10 @@
 .carousel-container {
-  height: 90vh;
-  width: 99vw;
+  height: 85vh;
+  width: 90vw;
   overflow: hidden;
   position: relative;
+  margin: auto;
+  border-radius: 15px;
 }
 
 .carousel-item {
@@ -166,11 +168,6 @@
   to {
     width: 0;
   }
-}
-
-.carousel-container.next .arrow-btn,
-.carousel-container.prev .arrow-btn {
-  pointer-events: none;
 }
 
 @media screen and (max-width: 678px) {

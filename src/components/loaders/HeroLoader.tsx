@@ -3,10 +3,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const HeroSkeleton = () => {
   return (
-    <section className="relative w-full text-white overflow-hidden">
+    <section className="min-h-screen relative w-full text-white overflow-hidden">
       {/* Desktop Background */}
-      <div className="hidden sm:block absolute inset-0 bg-gray-900">
-        <div className="absolute inset-0 bg-black/20" />
+      <div className="hidden sm:block absolute inset-0 bg-white">
+        <div className="absolute inset-0 bg-white" />
       </div>
 
       {/* Mobile Background */}

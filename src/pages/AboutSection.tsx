@@ -131,9 +131,8 @@ const AboutSection = () => {
 
         {/* ----- BOTTOM STATS SECTION ----- */}
         <div className="bottom-section">
-          {stats.map((stat) => {
-            const count = useCounter(stat.value, 0, 2000, isVisible);
-
+          {stats.map((stat, i) => {
+            const count = useCounter(stat.value);
             return (
               <div
                 key={stat.id}
@@ -142,14 +141,12 @@ const AboutSection = () => {
                 data-aos-duration="1000"
               >
                 <div className="left-box">
-                  <img src={stat.icon} className="icon" />
-
+                  <img src={stat.icon} alt="" className="icon" loading="lazy" />
                   <div className="count text-[#1e73be]">
                     {count.toLocaleString("en-US")}
                     {stat.suffix}
                   </div>
                 </div>
-
                 <div className="label">{stat.label}</div>
               </div>
             );
@@ -208,14 +205,19 @@ const AboutSection = () => {
           border-radius: 12px;
           border: 1px solid #e2e8f0;
         }
-          .right{
-            flex-basis: 50%;
-    min-width: 50%;
-          }
-    .left{
-        flex-basis: 50%;
-    min-width: 50%;
-    }
+
+        .right{
+          flex-basis: 50%;
+          min-width: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+          .left{
+          flex-basis: 50%;
+          min-width: 50%;
+        }
 
         .quote {
           font-style: italic;
@@ -231,6 +233,7 @@ const AboutSection = () => {
             margin-left: auto;
             margin-right: auto;
             gap: 21px;
+            justify-content: center;
         }
         @media (max-width: 950px) {
           .top-section {

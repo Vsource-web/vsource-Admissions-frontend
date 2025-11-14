@@ -69,7 +69,7 @@ const AboutSection: React.FC = () => {
       ref={sectionRef}
       className="bg-white py-10 sm:py-12 px-4 sm:px-6 md:px-8"
     >
-      <div className="mx-auto flex flex-col lg:flex-row justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between items-center mx-auto ">
         {/* LEFT TEXT SECTION */}
         <div className="basis-[50%] min-w-[50%]">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e73be] mb-3 sm:mb-4">
@@ -107,7 +107,7 @@ const AboutSection: React.FC = () => {
         </div>
 
         {/* RIGHT IMAGE/QUOTE SECTION */}
-        <div className="basis-[50%] min-w-[50%] flex items-center">
+        <div className="basis-[50%] min-w-[50%] flex items-center justify-center">
           <div className="flex flex-col items-center text-center rounded-xl p-3 sm:p-4">
             <img
               src="https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762754020/imgi_5_founder_pcglp8.jpg"
@@ -130,7 +130,7 @@ const AboutSection: React.FC = () => {
           return (
             <div
               key={stat.id}
-              className="w-full border border-blue-400 rounded-xl p-4 sm:p-6 bg-white shadow-sm hover:shadow-md transition-shadow flex justify-between"
+              className="w-full border border-blue-400 rounded-xl p-4 sm:p-6 bg-white shadow-sm hover:shadow-md transition-shadow flex justify-between items-center"
             >
               <div className="flex items-center gap-3">
                 <img
@@ -143,7 +143,7 @@ const AboutSection: React.FC = () => {
                   {stat.suffix}
                 </p>
               </div>
-              <p className="mt-2 text-sm md:text-base font-semibold text-gray-800 text-justify">
+              <p className="mt-2 text-sm md:text-base font-semibold text-gray-800 text-end">
                 {stat.label}
               </p>
             </div>

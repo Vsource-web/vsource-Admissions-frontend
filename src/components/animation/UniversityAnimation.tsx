@@ -151,22 +151,22 @@ const CarouselSlider: React.FC = () => {
   return (
     <div className="min-h-screen pt-[50px]">
       <div className={`carousel-container ${animationType || ""}`}>
-        <div className="list relative w-full h-full">
+        <div className="list relative w-full h-full rounded-[15px]">
           {items.map((item) => (
             <div key={item.id} className="carousel-item relative">
               <img src={item.desktop} alt={item.caption} />
 
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 rounded-[15px]"
                 style={{
                   background:
                     "linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.4), rgba(255,255,255,0))",
                 }}
               />
 
-              <div className="carousel-content absolute top-[20%] left-[50%] translate-x-[-50%] w-[1140px] max-w-[80%] pr-[30%] text-white">
+              <div className="carousel-content absolute sm:top-[20%] top-[10%] left-[50%] translate-x-[-50%] w-[1140px] max-w-[80%] pr-[30%] text-white">
                 <div
-                  className="content-title text-[50px] font-bold leading-[1.3em]"
+                  className="content-title sm:text-[50px] text-[25px] font-bold leading-[1.3em]"
                   style={{ textShadow: "0 5px 10px #0e1221" }}
                 >
                   {item.caption}
@@ -191,10 +191,16 @@ const CarouselSlider: React.FC = () => {
 
         {/* --- THUMBNAILS --- */}
         <div className="thumbnail-container absolute bottom-[50px] left-[50%] z-[30] flex gap-5">
-          {thumbnails.map((item) => (
+          {thumbnails.map((item, idx) => (
             <div
-              key={`thumb-${item.id}`}
-              className="thumbnail-item w-[150px] h-[220px] flex-shrink-0 relative"
+              key={item.id}
+              className={`
+                thumbnail-item w-[150px] h-[220px] relative 
+                ${idx > 0 ? "hidden" : ""} 
+                md:${idx > 3 ? "hidden" : "block"}
+                shadow-[0px_0px_6px_1px_rgba(255,255,255,0.25)]
+                rounded-[20px]
+              `}
             >
               <img
                 src={item.image}
@@ -208,9 +214,10 @@ const CarouselSlider: React.FC = () => {
                     "linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.4), rgba(255,255,255,0))",
                 }}
               />
-              <div className="absolute bottom-[10px] left-[10px] right-[10px] text-white">
-                <div className="font-medium text-xs">{item.title}</div>
-                <div className="font-light text-[10px]">Description</div>
+              <div className="absolute bottom-[10px] left-[10px] right-[10px]">
+                <div className="font-medium text-xs text-yellow-400">
+                  {item.title}
+                </div>
               </div>
             </div>
           ))}
