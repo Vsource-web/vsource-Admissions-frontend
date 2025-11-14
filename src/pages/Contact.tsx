@@ -1,67 +1,19 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import SectionTitle from "@/components/SectionTitle";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import { Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const ContactPage = () => {
   const location = useLocation();
-  const [selectedService, setSelectedService] = useState("");
 
-  // Scroll to top on page load and handle URL query params
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Get program from URL query parameter
-    const params = new URLSearchParams(location.search);
-    const program = params.get("program");
-
-    if (program) {
-      setSelectedService(program);
-    }
   }, [location]);
-
-  const branches = [
-    {
-      id: 1,
-      city: "Hyderabad",
-      address: "123 Educational Lane, Knowledge City, Hyderabad 500001",
-      phone: "+91 123 456 7890",
-      email: "hyderabad@vsource.com",
-      hours: "Mon-Sat: 10:00 AM - 7:00 PM",
-    },
-    {
-      id: 2,
-      city: "Delhi",
-      address: "456 Academic Avenue, Study District, Delhi 110001",
-      phone: "+91 234 567 8901",
-      email: "delhi@vsource.com",
-      hours: "Mon-Sat: 10:00 AM - 7:00 PM",
-    },
-    {
-      id: 3,
-      city: "Mumbai",
-      address: "789 Campus Road, Education Quarter, Mumbai 400001",
-      phone: "+91 345 678 9012",
-      email: "mumbai@vsource.com",
-      hours: "Mon-Sat: 10:00 AM - 7:00 PM",
-    },
-  ];
-
-  // List of available services
-  const services = [
-    { value: "", label: "Select a service" },
-    { value: "Study Abroad Counseling", label: "Study Abroad Counseling" },
-    { value: "Visa Assistance", label: "Visa Assistance" },
-    { value: "University Selection", label: "University Selection" },
-    { value: "Scholarship Guidance", label: "Scholarship Guidance" },
-    { value: "Other", label: "Other" },
-  ];
 
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-36 pb-20 bg-gradient-to-b from-[#002855] to-[#1a1a1a] text-white">
+      <section className="pt-36 pb-20 bg-gradient-to-b from-darkblue to-gray-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Branches</h1>
@@ -81,7 +33,7 @@ const ContactPage = () => {
                 city: "Dilsukhnagar",
                 address:
                   "Vsource, Near Shashi Hospital, Metro pillar no-1519, Dilsukhnagar, Hyderabad- 500060, Telangana.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
@@ -93,80 +45,71 @@ const ContactPage = () => {
                 city: "Ameerpet",
                 address:
                   "Vsource Building, Kamma Sangam lane, Ameerpet, Hyderabad- 500073, Telangana.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Vsource+Overseas+Consultants+Pvt+Ltd",
                 imageUrl:
-                  "https://lh3.googleusercontent.com/p/AF1QipOMh-oDSNTOEZF6eiY4ooUkyUCISycBKjzYiNYP=w426-h240-k-no",
+                  "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v169763103616/gipsmkbbewuew7kh690d.jpg",
               },
               {
                 city: "KPHB - JNTU",
                 address:
                   "Beside JNTU Metro station Near ICICI Bank, Hyderabad, Telangana.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Vsource+Overseas+Consultants+Pvt+Ltd",
-                imageUrl: "/images/branches/jntu branch.jpg",
+                imageUrl: "/assets/images/branches/jntu branch.jpg",
               },
               {
                 city: "Vijayawada",
                 address:
                   "1st floor, Mouli Towers, Beside Reliance Trends, Benz Circle, Vijayawada, AP.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/VSource+Educational+Consultants+Pvt+Ltd",
-                imageUrl: "/images/branches/vijaywada branch.jpeg",
+                imageUrl: "/assets/images/branches/vijaywada branch.jpeg",
               },
               {
                 city: "Visakhapatnam",
                 address:
                   "Annapurna Nilayam 2nd Floor, Opp Hotel Kamat, Lawson's Bay Colony, Visakhapatnam, AP.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Annapurna+Nilayam/@17.7260105,83.3154943,15z/data=!4m10!1m2!2m1!1sAnnapurna+Nilayam+2nd+Floor,+Opp+Hotel+Kamat,+Lawson's+Bay+Colony,+Visakhapatnam,+AP.!3m6!1s0x3a3943003fa4956b:0xc818085c92e6c50c!8m2!3d17.7260105!4d83.3345487!15sClVBbm5hcHVybmEgTmlsYXlhbSAybmQgRmxvb3IsIE9wcCBIb3RlbCBLYW1hdCwgTGF3c29uJ3MgQmF5IENvbG9ueSwgVmlzYWtoYXBhdG5hbSwgQVAukgESYXBhcnRtZW50X2J1aWxkaW5nqgHPARABKlQiUGFubmFwdXJuYSBuaWxheWFtIDJuZCBmbG9vciBvcHAgaG90ZWwga2FtYXQgbGF3c29uJ3MgYmF5IGNvbG9ueSB2aXNha2hhcGF0bmFtIGFwKAAyHxABIhvuhInUa5mDOARt2VWc3lqHzM6Cr3G5c1dyBg0yVBACIlBhbm5hcHVybmEgbmlsYXlhbSAybmQgZmxvb3Igb3BwIGhvdGVsIGthbWF0IGxhd3NvbidzIGJheSBjb2xvbnkgdmlzYWtoYXBhdG5hbSBhcOABAA!16s%2Fg%2F11vxmf0vlw?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D",
-                imageUrl: "/images/branches/vizag branch.jpeg",
+                imageUrl:
+                  "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1763103829/p9rbcd5ihlkr3wxn3x4k.jpg",
               },
               {
                 city: "Tirupathi",
                 address:
                   "19-3-1/s, 3rd Floor, Renigunta Rd, Near Jawa showroom, Tirupathi - 517501.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Vsource+tirupathi",
-                imageUrl: "/images/branches/tirupati branch.jpeg",
+                imageUrl: "/assets/images/branches/tirupati branch.jpeg",
               },
-              {
-                city: "Anantapur",
-                address:
-                  "Ground floor, CPV Residency, Beside Chandra Hospital, Anantapur, AP 515001.",
-                phone: "+91 99126 11119",
-                email: "Support@vsourceadmissions.com",
-                hours: "10am to 8pm",
-                locationUrl:
-                  "https://www.google.com/maps/place/Vsource+tirupathi",
-                imageUrl:
-                  "https://lh3.googleusercontent.com/p/AF1QipOMOt_FP4_B7iqfcNko_xoHWcoo4Lq-WUfl-3ZA=w408-h272-k-no",
-              },
+
               {
                 city: "Bengaluru",
                 address:
                   "#88, 9th cross G-Block, Sahakar Nagar, Bengaluru-560092, Karnataka.",
-                phone: "+91 99126 11119",
+                phone: "+91 91217 11119",
                 email: "Support@vsourceadmissions.com",
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/VSOURCE+BENGALURU",
-                imageUrl: "/images/branches/bangalore branch.jpeg",
+                imageUrl:
+                  "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1763103616/eyhy0tiintaiqqd3d7jq.jpg",
               },
             ].map((branch, index) => (
               <AnimateOnScroll key={index} delay={index * 100}>

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useRef, memo } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* ---------------------------- MENU STRUCTURE ---------------------------- */
 type Uni = { name: string; to: string };
 type Category = { key: "georgia" | "russia"; label: string; items: Uni[] };
 
@@ -46,18 +45,15 @@ const CATEGORIES: Category[] = [
   },
 ];
 
-/* --------------------------------- NAVBAR --------------------------------- */
-export function Navbar() {
+function Navbar() {
   const location = useLocation();
-
-  const [isOpen, setIsOpen] = useState(false); // mobile
-  const [openDropdown, setOpenDropdown] = useState(false); // desktop MBBS dropdown
-  const [tab, setTab] = useState<Category["key"]>("georgia"); // active left tab in dropdown
+  const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [tab, setTab] = useState<Category["key"]>("georgia");
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const ddRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll effects
   useEffect(() => {
     if (typeof window !== "undefined") {
       const onScroll = () => {
@@ -72,7 +68,6 @@ export function Navbar() {
     }
   }, []);
 
-  // Click-away (desktop dropdown)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const onDocClick = (e: MouseEvent) => {
@@ -85,7 +80,6 @@ export function Navbar() {
     }
   }, []);
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
     if (typeof window !== "undefined") {
       const body = document.body;
@@ -99,7 +93,6 @@ export function Navbar() {
     }
   }, [isOpen]);
 
-  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -132,23 +125,19 @@ export function Navbar() {
         isScrolled ? "bg-white shadow-md" : "bg-transparent"
       )}
     >
-      {/* top row */}
       <div className="w-full max-w-[1400px] mx-auto px-6 flex items-center justify-between gap-4">
-        {/* Logos */}
         <Link to="/" className="flex items-center gap-2 relative z-20">
           <img
             alt="Vsource Logo"
             className="h-16 md:h-20 w-auto object-contain rounded-xl"
-            src="/images/vsourcess.png"
+            src="/images/vsourcess.webp"
           />
           <img
-            alt="Vsource Logo"
-            className="h-16 md:h-18 w-auto object-contain rounded-xl"
-            src="/images/20 years logo-01.png"
+            src="https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto,w_200,c_limit,dpr_auto/v1762706239/nav-badge20years_re4asz.webp"
+            alt="20 Years Logo"
+            className="h-20 md:h-18 ml-3 w-auto object-contain drop-shadow-md"
           />
         </Link>
-
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className={linkCls(isActive("/"))}>
             Home
@@ -156,8 +145,6 @@ export function Navbar() {
           <Link to="/about" className={linkCls(isActive("/about"))}>
             About
           </Link>
-
-          {/* MBBS-ABROAD DROPDOWN (two-pane style) */}
           <div
             className="relative"
             ref={ddRef}
@@ -174,8 +161,6 @@ export function Navbar() {
             >
               MBBS-ABROAD <ChevronDown className="h-4 w-4" />
             </button>
-
-            {/* Dropdown panel (centered & always above header) */}
             <div
               className={cn(
                 "fixed left-2/3 -translate-x-1/2 mt-3 w-[720px] max-w-[95vw] grid grid-cols-[220px_1fr] rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-200 z-50",
@@ -183,7 +168,6 @@ export function Navbar() {
               )}
               style={{ top: "5rem" }}
             >
-              {/* Left tabs */}
               <div className="p-3 space-y-2">
                 {CATEGORIES.map((c) => (
                   <button
@@ -202,8 +186,6 @@ export function Navbar() {
                   </button>
                 ))}
               </div>
-
-              {/* Right list */}
               <div className="p-3">
                 <ul className="divide-y">
                   {currentCategory.items.map((u) => (
@@ -225,19 +207,16 @@ export function Navbar() {
               </div>
             </div>
           </div>
-
-          <Link to="/view-360" className={linkCls(isActive("/view-360"))}>
+          <NavLink to="/view-360" className={linkCls(isActive("/view-360"))}>
             360_VIEW
-          </Link>
-          <Link to="/gallery" className={linkCls(isActive("/gallery"))}>
+          </NavLink>
+          <NavLink to="/gallery" className={linkCls(isActive("/gallery"))}>
             GALLERY
-          </Link>
-          <Link to="/contact" className={linkCls(isActive("/contact"))}>
+          </NavLink>
+          <NavLink to="/contact" className={linkCls(isActive("/contact"))}>
             CONTACT
-          </Link>
+          </NavLink>
         </nav>
-
-        {/* Mobile toggle */}
         <button
           className={cn(isScrolled ? "text-black" : "text-white", "md:hidden")}
           onClick={() => setIsOpen((v) => !v)}
@@ -250,172 +229,108 @@ export function Navbar() {
           )}
         </button>
       </div>
-
-      {/* scroll progress bar */}
-      {/* {scrollProgress > 0 && (
-        <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gray-200">
-          <div
-            className="h-[3px] bg-brand-red transition-all duration-75"
-            style={{ width: `${scrollProgress}% ` }}
-          />
-        </div>
-      )} */}
-
-      {/* Mobile menu (full-screen) */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-30 md:hidden bg-white flex flex-col"
-          role="dialog"
-          aria-modal="true"
-        >
-          {/* top bar */}
-          <div className="w-full border-b">
-            <div className="w-full max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-              {/* <Link
-                to="/"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3"
-              >
-                <img
-                  src="/images/vsourcess.png"
-                  alt="VSource Logo"
-                  className="h-12 w-auto object-contain"
-                />
-                <img
-                  src="/images/20 years logo-01.png"
-                  alt="20 Years"
-                  className="h-12 w-auto object-contain"
-                />
-              </Link> */}
-              <Link to="/" className="flex items-center gap-2 relative z-20">
-                <img
-                  alt="Vsource Logo"
-                  className="h-16 md:h-20 w-auto object-contain rounded-xl"
-                  src="/images/vsourcess.png"
-                />
-                <img
-                  alt="Vsource Logo"
-                  className="h-16 md:h-18 w-auto object-contain rounded-xl"
-                  src="/images/20 years logo-01.png"
-                />
-              </Link>
-              <button
-                aria-label="Close menu"
-                className="text-gray-800 hover:text-red-600"
-                onClick={() => setIsOpen(false)}
-              >
-                <X size={40} strokeWidth={3} />
-              </button>
-            </div>
-          </div>
-
-          {/* scrollable body */}
-          <div className="flex-1 overflow-y-auto overscroll-contain">
-            <div className="w-full max-w-[1400px] mx-auto px-6 py-4 space-y-3">
-              <Link
-                to="/"
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-lg font-medium transition-colors",
-                  isActive("/")
-                    ? "text-red-600"
-                    : "text-gray-800 hover:text-red-600"
-                )}
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-lg font-medium transition-colors",
-                  isActive("/about")
-                    ? "text-red-600"
-                    : "text-gray-800 hover:text-red-600"
-                )}
-              >
-                About
-              </Link>
-
-              {/* Accordion for MBBS-ABROAD */}
-              <MobileAccordion label="MBBS-ABROAD">
-                <div className="space-y-3 pl-2">
-                  {CATEGORIES.map((c) => (
-                    <div key={c.key}>
-                      <div className="mt-1 mb-1 text-[11px] font-semibold uppercase text-gray-500">
-                        {c.label}
-                      </div>
-                      <div className="space-y-1">
-                        {c.items.map((u) => (
-                          <Link
-                            key={u.to}
-                            to={u.to}
-                            onClick={() => setIsOpen(false)}
-                            className={cn(
-                              "block py-2 text-[15px] font-medium transition-colors",
-                              isActive(u.to)
-                                ? "text-red-600"
-                                : "text-gray-800 hover:text-red-600"
-                            )}
-                          >
-                            {u.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+      <div
+        className={cn(
+          "md:hidden fixed inset-0 bg-white z-10 transition-all duration-300 ease-in-out",
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="w-full max-w-[1400px] mx-auto px-4 pt-28 pb-8 space-y-4">
+          <Link
+            to="/"
+            className={cn(
+              "block py-2 text-lg font-medium transition-colors",
+              isActive("/")
+                ? "text-red-600"
+                : "text-gray-800 hover:text-red-600"
+            )}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className={cn(
+              "block py-2 text-lg font-medium transition-colors",
+              isActive("/about")
+                ? "text-red-600"
+                : "text-gray-800 hover:text-red-600"
+            )}
+          >
+            About
+          </Link>
+          <MobileAccordion label="MBBS-ABROAD">
+            <div className="space-y-3 pl-2">
+              {CATEGORIES.map((c) => (
+                <div key={c.key}>
+                  <div className="mt-1 mb-1 text-[11px] font-semibold uppercase text-gray-500">
+                    {c.label}
+                  </div>
+                  <div className="space-y-1">
+                    {c.items.map((u) => (
+                      <Link
+                        key={u.to}
+                        to={u.to}
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "block py-2 text-[15px] font-medium transition-colors",
+                          isActive(u.to)
+                            ? "text-red-600"
+                            : "text-gray-800 hover:text-red-600"
+                        )}
+                      >
+                        {u.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </MobileAccordion>
-
-              <a
-                href="https://vsourceoverseas.com/360View/"
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-lg font-medium transition-colors",
-                  isActive("/360-view")
-                    ? "text-red-600"
-                    : "text-gray-800 hover:text-red-600"
-                )}
-              >
-                360 View
-              </a>
-              <Link
-                to="/gallery"
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-lg font-medium transition-colors",
-                  isActive("/gallery")
-                    ? "text-red-600"
-                    : "text-gray-800 hover:text-red-600"
-                )}
-              >
-                Gallery
-              </Link>
-              <Link
-                to="/contact"
-                onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-2 text-lg font-medium transition-colors",
-                  isActive("/contact")
-                    ? "text-red-600"
-                    : "text-gray-800 hover:text-red-600"
-                )}
-              >
-                Contact
-              </Link>
-
-              <div className="h-10" />
+              ))}
             </div>
-          </div>
+          </MobileAccordion>
+          <a
+            href="https://vsourceoverseas.com/360View/"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setIsOpen(false)}
+            className={cn(
+              "block py-2 text-lg font-medium transition-colors",
+              isActive("/360-view")
+                ? "text-red-600"
+                : "text-gray-800 hover:text-red-600"
+            )}
+          >
+            360 View
+          </a>
+          <Link
+            to="/gallery"
+            onClick={() => setIsOpen(false)}
+            className={cn(
+              "block py-2 text-lg font-medium transition-colors",
+              isActive("/gallery")
+                ? "text-red-600"
+                : "text-gray-800 hover:text-red-600"
+            )}
+          >
+            Gallery
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className={cn(
+              "block py-2 text-lg font-medium transition-colors",
+              isActive("/contact")
+                ? "text-red-600"
+                : "text-gray-800 hover:text-red-600"
+            )}
+          >
+            Contact
+          </Link>
+          <div className="h-10" />
         </div>
-      )}
+      </div>
     </header>
   );
 }
 
-/* --------------------------- MobileAccordion --------------------------- */
 function MobileAccordion({
   label,
   children,
@@ -448,4 +363,4 @@ function MobileAccordion({
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

@@ -3,34 +3,48 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { Layout } from "@/components/layout/layout";
-import NotFound from "./pages/NotFound";
-import { Footer } from "./components/ui/footer";
-import ScrollToTop from "./ScrollToTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ScrollToTopButton from "./components/ScrollToTopButton";
-import DelayedPopup from "./components/DelayedPopup";
-import Navbar from "./components/ui/navbar";
 import { Toaster } from "sonner";
-import UniversityGeorgia from "./pages/University-Pages/UniversityGeorgia";
-import UniversityKenWalker from "./pages/University-Pages/UniversityKenWalker";
-import UniversityTbilisiStateMedical from "./pages/University-Pages/UniversityTbilisiStateMedical";
-import UniversityIliaState from "./pages/University-Pages/UniversityIliaState";
-import UniversityAkakiTsereteliState from "./pages/University-Pages/UniversityAkakiTsereteliState";
-import UniversityBelgorodStateNationalResearch from "./pages/University-Pages/UniversityBelgorodStateNationalResearch";
+
+import NotFound from "./pages/NotFound";
+import Footer from "@/components/Footer";
+import ScrollToTop from "./ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import Navbar from "@/components/NavBar";
 import HeroLoader from "./components/loaders/HeroLoader";
 
 const Home = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import Disclaimer from "./pages/Disclaimer";
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const View360 = lazy(() => import("./pages/View360"));
 const Contact = lazy(() => import("./pages/Contact"));
+
 const ContactBar = lazy(() => import("./components/ContactBar"));
-const GoVirtual = lazy(() => import("./services/GoVirtual"));
+const DelayedPopup = lazy(() => import("./components/DelayedPopup"));
+
+const UniversityGeorgia = lazy(
+  () => import("./pages/University-Pages/UniversityGeorgia")
+);
+const UniversityKenWalker = lazy(
+  () => import("./pages/University-Pages/UniversityKenWalker")
+);
+const UniversityTbilisiStateMedical = lazy(
+  () => import("./pages/University-Pages/UniversityTbilisiStateMedical")
+);
+const UniversityIliaState = lazy(
+  () => import("./pages/University-Pages/UniversityIliaState")
+);
+const UniversityAkakiTsereteliState = lazy(
+  () => import("./pages/University-Pages/UniversityAkakiTsereteliState")
+);
+const UniversityBelgorodStateNationalResearch = lazy(
+  () =>
+    import("./pages/University-Pages/UniversityBelgorodStateNationalResearch")
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,16 +57,16 @@ const queryClient = new QueryClient({
 });
 
 const AppContent = () => {
+  const location = useLocation();
   const [showForm, setShowForm] = useState(false);
-  const location = useLocation(); //
   const [showFormIcon, setShowFormIcon] = useState(false);
-  const isGoVirtualPage = location.pathname === "/meeting";
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
+
       if (docHeight > 0 && scrollTop / docHeight >= 0.2) {
         setShowForm(true);
         window.removeEventListener("scroll", handleScroll);
@@ -62,6 +76,7 @@ const AppContent = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // AOS init
   useEffect(() => {
     AOS.init({ once: false, mirror: true });
   }, []);
@@ -71,100 +86,96 @@ const AppContent = () => {
   }, [location.pathname]);
 
   return (
-    <Layout>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        {!isGoVirtualPage && <Navbar />}
-        <main>
-          <Suspense fallback={<HeroLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
 
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/view-360" element={<View360 />} />
-              <Route
-                path="/mbbs-abroad/georgia/university-of-georgia"
-                element={<UniversityGeorgia />}
-              />
-              <Route
-                path="/mbbs-abroad/georgia/ken-walker-international-university"
-                element={<UniversityKenWalker />}
-              />
-              <Route
-                path="/mbbs-abroad/georgia/tbilisi-state-medical-university"
-                element={<UniversityTbilisiStateMedical />}
-              />
-              <Route
-                path="/mbbs-abroad/georgia/tbilisi-state-medical-university"
-                element={<UniversityTbilisiStateMedical />}
-              />
-              <Route
-                path="/mbbs-abroad/georgia/ilia-state-university"
-                element={<UniversityIliaState />}
-              />
-              <Route
-                path="/mbbs-abroad/georgia/akaki-tsereteli-state-university"
-                element={<UniversityAkakiTsereteliState />}
-              />
-              <Route
-                path="/mbbs-abroad/russia/belgorod-state-national-research-university"
-                element={<UniversityBelgorodStateNationalResearch />}
-              />
+      <main>
+        <Suspense fallback={<HeroLoader />}>
+          <Routes>
+            {/* MAIN ROUTES */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/view-360" element={<View360 />} />
 
-              <Route path="/meeting" element={<GoVirtual />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route
-                path="/terms-and-conditions"
-                element={<TermsAndConditions />}
-              />
-              <Route path="/disclaimer" element={<Disclaimer />} />
-            </Routes>
-          </Suspense>
-        </main>
+            {/* UNIVERSITY PAGES */}
+            <Route
+              path="/mbbs-abroad/georgia/university-of-georgia"
+              element={<UniversityGeorgia />}
+            />
+            <Route
+              path="/mbbs-abroad/georgia/ken-walker-international-university"
+              element={<UniversityKenWalker />}
+            />
+            <Route
+              path="/mbbs-abroad/georgia/tbilisi-state-medical-university"
+              element={<UniversityTbilisiStateMedical />}
+            />
+            <Route
+              path="/mbbs-abroad/georgia/ilia-state-university"
+              element={<UniversityIliaState />}
+            />
+            <Route
+              path="/mbbs-abroad/georgia/akaki-tsereteli-state-university"
+              element={<UniversityAkakiTsereteliState />}
+            />
+            <Route
+              path="/mbbs-abroad/russia/belgorod-state-national-research-university"
+              element={<UniversityBelgorodStateNationalResearch />}
+            />
 
-        {!isGoVirtualPage && <ContactBar />}
-        {!isGoVirtualPage && <Footer />}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route
+              path="/terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
+            <Route path="/disclaimer" element={<Disclaimer />} />
 
-        <ScrollToTopButton
-          showFormIcon={showFormIcon}
-          onFormIconClick={() => {
-            setShowForm(true);
-            setShowFormIcon(false);
-          }}
-        />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
 
-        {showForm && (
+          {/* CONTACT BAR (lazy) */}
+          <ContactBar />
+        </Suspense>
+      </main>
+
+      {/* FOOTER */}
+      <Footer />
+
+      {/* SCROLL TO TOP BUTTON */}
+      <ScrollToTopButton
+        showFormIcon={showFormIcon}
+        onFormIconClick={() => {
+          setShowForm(true);
+          setShowFormIcon(false);
+        }}
+      />
+
+      {/* POPUP FORM */}
+      {showForm && (
+        <Suspense fallback={<div />}>
           <DelayedPopup
             onMinimize={() => {
               setShowForm(false);
               setShowFormIcon(true);
             }}
           />
-        )}
-      </div>
-    </Layout>
+        </Suspense>
+      )}
+    </div>
   );
 };
 
 const App = () => {
-  // Init AOS
-  useEffect(() => {
-    AOS.init({ once: false, mirror: true });
-  }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [location.pathname]);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
+
         <BrowserRouter>
+          <ScrollToTop />
           <AppContent />
         </BrowserRouter>
       </TooltipProvider>

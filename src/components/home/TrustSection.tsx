@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {
-  User,
-  GraduationCap,
-  IndianRupee,
-  MapPin,
-  Utensils,
-} from "lucide-react";
+import { User, GraduationCap, MapPin, Utensils } from "lucide-react";
 
 interface Service {
   icon: JSX.Element;
@@ -18,28 +12,32 @@ interface Service {
 
 const services: Service[] = [
   {
-    backgroundImage: "/images/Trusted-section/expert-consultation.jpg",
+    backgroundImage:
+      "https://res.cloudinary.com/dch00stdh/image/upload/v1762706926/Dedicated_Counsellor_mypjj8.webp",
     icon: <User size={40} color="#ffffff" />,
     title: "Expert Consultation",
     description:
       "We assigned a high professional Expert Counselors, gives thorough knowledge on the MBBS offered by ABROAD Universities",
   },
   {
-    backgroundImage: "/images/Trusted-section/admission-documentation.jpg",
+    backgroundImage:
+      "https://res.cloudinary.com/dch00stdh/image/upload/v1762706925/accommodation-food_suedpf.webp",
     icon: <GraduationCap size={40} color="#ffffffff" />,
     title: "Admission & Documentation",
     description:
       "We Provide Admission with all Documents in order to ensure the success of Admission & Visa Process",
   },
   {
-    backgroundImage: "/images/Trusted-section/accommodation-food.jpg",
+    backgroundImage:
+      "https://res.cloudinary.com/dch00stdh/image/upload/v1762706929/Loan_Assistance_u5idg4.webp",
     icon: <Utensils size={40} color="#ffffffff" />,
     title: "Accommodation & INDIAN Food",
     description:
       "Separate Hostel for Boy & Girls with INDIAN Food 24/7 CCTV surveillance to ensure student security",
   },
   {
-    backgroundImage: "/images/Trusted-section/pre-post-landing.jpg",
+    backgroundImage:
+      "https://res.cloudinary.com/dch00stdh/image/upload/v1762706937/pre-post-landing_rk8hka.webp",
     icon: <MapPin size={40} color="#ffffffff" />,
     title: "Pre & Post Landing Support",
     description:

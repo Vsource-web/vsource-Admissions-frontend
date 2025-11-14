@@ -1,16 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 const currentYear = new Date().getFullYear();
-export function Footer() {
+function Footer() {
   return (
     <footer className="bg-[rgb(10,11,26)] text-white pt-6 pb-6">
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,7 +22,7 @@ export function Footer() {
                 className="group"
               >
                 <img
-                  src="/images/icons/fb.png"
+                  src="/images/icons/fb.webp"
                   alt="Facebook"
                   className="w-16 h-16 hover:scale-110 transition-transform duration-300"
                 />
@@ -42,7 +34,7 @@ export function Footer() {
                 className="group"
               >
                 <img
-                  src="/images/icons/insta.png"
+                  src="/images/icons/insta.webp"
                   alt="Instagram"
                   className="w-16 h-16 hover:scale-110 transition-transform duration-300"
                 />
@@ -54,7 +46,7 @@ export function Footer() {
                 className="group"
               >
                 <img
-                  src="/images/icons/yt.png"
+                  src="/images/icons/yt.webp"
                   alt="YouTube"
                   className="w-16 h-16 hover:scale-110 transition-transform duration-300"
                 />
@@ -66,7 +58,7 @@ export function Footer() {
                 className="group"
               >
                 <img
-                  src="/images/icons/linked in.png"
+                  src="/images/icons/linked in.webp"
                   alt="LinkedIn"
                   className="w-16 h-16 hover:scale-110 transition-transform duration-300"
                 />
@@ -281,3 +273,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer);
