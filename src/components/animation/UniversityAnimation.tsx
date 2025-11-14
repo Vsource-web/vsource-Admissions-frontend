@@ -224,7 +224,7 @@ const CarouselSlider: React.FC = () => {
         </div>
 
         {/* --- ARROWS --- */}
-        <div className="absolute top-[80%] right-[52%] z-[20] w-[300px] max-w-[30%] flex gap-[10px] items-center">
+        <div className="absolute top-[80%] md:right-[68%] right-[60%] z-[20] w-[300px] max-w-[30%] flex gap-[10px] items-center">
           <button
             onClick={() => showSlider("prev")}
             className="arrow-btn w-[40px] h-[40px] rounded-full bg-[rgba(255,0,0,0.77)] border-none text-white font-bold transition-all duration-500 hover:bg-white hover:text-black"
