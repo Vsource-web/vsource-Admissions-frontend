@@ -7,21 +7,21 @@ const stats = [
     value: 100000,
     suffix: "+",
     label: "Students Empowered",
-    icon: "https://cdn-icons-gif.flaticon.com/6454/6454106.gif",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/hat_phpbum.gif",
   },
   {
     id: 2,
     value: 20,
     suffix: "+",
-    label: "Years of Experience",
-    icon: "https://cdn-icons-gif.flaticon.com/15370/15370761.gif",
+    label: "Years of\nExperience",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/handshake_ewjcsn.gif",
   },
   {
     id: 3,
     value: 10,
     suffix: "+",
     label: "Study Destinations",
-    icon: "https://cdn-icons-gif.flaticon.com/15747/15747340.gif",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/earth_vhzkro.gif",
   },
 ];
 
@@ -69,9 +69,9 @@ const AboutSection: React.FC = () => {
       ref={sectionRef}
       className="bg-white py-10 sm:py-12 px-4 sm:px-6 md:px-8"
     >
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10">
+      <div className="mx-auto flex flex-col lg:flex-row justify-between items-center">
         {/* LEFT TEXT SECTION */}
-        <div className="w-full lg:w-3/5">
+        <div className="basis-[50%] min-w-[50%]">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e73be] mb-3 sm:mb-4">
             About Vsource Admissions
           </h2>
@@ -107,10 +107,10 @@ const AboutSection: React.FC = () => {
         </div>
 
         {/* RIGHT IMAGE/QUOTE SECTION */}
-        <div className="w-full lg:w-2/5">
-          <div className="flex flex-col items-center text-center border border-gray-300 rounded-xl p-3 sm:p-4">
+        <div className="basis-[50%] min-w-[50%] flex items-center">
+          <div className="flex flex-col items-center text-center rounded-xl p-3 sm:p-4">
             <img
-              src="https://vsourcevarsity.com/images/founder.webp"
+              src="https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762754020/imgi_5_founder_pcglp8.jpg"
               alt="Founder"
               className="rounded-lg w-full max-w-md object-cover aspect-[4/3] sm:aspect-[3/2]"
             />
@@ -124,13 +124,13 @@ const AboutSection: React.FC = () => {
       </div>
 
       {/* STATS SECTION */}
-      <div className="max-w-7xl mx-auto mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="flex flex-col md:flex-row max-w-7xl mx-auto mt-8 sm:mt-12 gap-4 sm:gap-6 ">
         {stats.map((stat) => {
           const count = useCounter(stat.value, isVisible);
           return (
             <div
               key={stat.id}
-              className="w-full border border-blue-400 rounded-xl p-4 sm:p-6 bg-white shadow-sm hover:shadow-md transition-shadow"
+              className="w-full border border-blue-400 rounded-xl p-4 sm:p-6 bg-white shadow-sm hover:shadow-md transition-shadow flex justify-between"
             >
               <div className="flex items-center gap-3">
                 <img

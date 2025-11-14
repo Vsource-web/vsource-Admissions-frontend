@@ -1,53 +1,43 @@
-"use client";
-import { AboutUs, AboutUsBanner } from "@/lib/types/LandingPage";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 
-const fetchAboutus = async () => {
-  const { data } = await axios.get(
-    `${
-      import.meta.env.VITE_CMS_GLOBALURL
-    }/api/landing-pages?populate[Sections][on][blocks.about-us][populate][about_list][populate][Image_or_gif][fields][0]=url&populate[Sections][on][blocks.about-us][populate][about_list][populate][Image_or_gif][fields][1]=alternativeText&populate[Sections][on][blocks.about-us][populate][About_us_count][populate][image_or_gif][fields][0]=url&populate[Sections][on][blocks.about-us][populate][About_us_count][populate][image_or_gif][fields][1]=alternativeText&populate[Sections][on][blocks.about-us][populate][chairmanImage][fields][0]=url&populate[Sections][on][blocks.about-us][populate][chairmanImage][fields][1]=alternativeText`
-  );
-  return data.data[0].Sections[0];
-};
 const stats = [
   {
     id: 1,
     value: 100000,
     suffix: "+",
     label: "Students Empowered",
-    icon: "https://cdn-icons-gif.flaticon.com/6454/6454106.gif",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/hat_phpbum.gif",
   },
   {
     id: 2,
     value: 20,
     suffix: "+",
-    label: "Years of Experience",
-    icon: "https://cdn-icons-gif.flaticon.com/15370/15370761.gif",
+    label: "Years of\nExperience",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/handshake_ewjcsn.gif",
   },
   {
     id: 3,
     value: 10,
     suffix: "+",
     label: "Study Destinations",
-    icon: "https://cdn-icons-gif.flaticon.com/15747/15747340.gif",
+    icon: "https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762770342/earth_vhzkro.gif",
   },
 ];
 
-/* Counter hook */
-function useCounter(end: number, active: boolean, start = 0, duration = 2000) {
+export function useCounter(end, start = 0, duration = 2000, active = true) {
   const [count, setCount] = useState(start);
 
   useEffect(() => {
     if (!active) return;
-    let startTime: number | null = null;
 
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
+    let startTime = null;
+
+    const step = (time) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+
       setCount(Math.floor(progress * (end - start) + start));
+
       if (progress < 1) requestAnimationFrame(step);
     };
 
@@ -57,260 +47,236 @@ function useCounter(end: number, active: boolean, start = 0, duration = 2000) {
   return count;
 }
 
-const AboutSection: React.FC = () => {
+const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const {
-    data: aboutData,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<AboutUs>({
-    queryKey: ["about-us"],
-    queryFn: fetchAboutus,
-    staleTime: Infinity,
-  });
+  const sectionRef = useRef();
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
+          obs.disconnect();
         }
       },
       { threshold: 0.2 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-white py-10 sm:py-12 px-4 sm:px-6 md:px-8"
-    >
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10">
-        {/* LEFT TEXT SECTION */}
-        <div className="w-full lg:w-3/5">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e73be] mb-3 sm:mb-4">
-            About Vsource Admissions
-          </h2>
+    <section className="about-section" ref={sectionRef}>
+      <div className="w-full max-w-[1400px] mx-auto px-4">
+        {/* ----- TOP SECTION ----- */}
+        <div className="top-section">
+          {/* LEFT SIDE */}
+          <div className="left">
+            <h2
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              className="text-[#1e73be]"
+            >
+              About Vsource Admissions
+            </h2>
 
-          <p className="text-base sm:text-lg md:text-xl font-semibold text-black mb-3 sm:mb-4 text-justify">
-            South India&apos;s Leading Educational Group for Higher Education
-          </p>
+            <p className="desc" data-aos="fade-right" data-aos-duration="1000">
+              <strong>
+                South India&apos;s Leading Educational Group for Higher
+                Education
+              </strong>
+            </p>
 
-          <p className="text-black mb-3 sm:mb-4 leading-relaxed text-justify">
-            Vsource Admissions specializes in assisting aspiring doctors with
-            their journey to study MBBS abroad. We provide end-to-end guidance,
-            from university selection to visa processing, ensuring a seamless
-            and worry-free experience.
-          </p>
+            <p className="para" data-aos="fade-right" data-aos-duration="1000">
+              Vsource Admissions specializes in assisting aspiring doctors with
+              their journey to study MBBS abroad. We provide end-to-end
+              guidance, from university selection to visa processing, ensuring a
+              seamless and worry-free experience.
+            </p>
 
-          <p className="text-black mb-3 sm:mb-4 leading-relaxed text-justify">
-            We are proud to offer{" "}
-            <span className="font-semibold text-black">
-              100% Educational Loan Assistance
-            </span>{" "}
-            to all eligible students, helping you achieve your dream of becoming
-            a doctor without financial barriers. Our focus is on placing you in
-            globally recognized universities with no capitation fees.
-          </p>
+            <p className="para" data-aos="fade-right" data-aos-duration="1000">
+              We are proud to offer{" "}
+              <span className="font-bold">
+                100% Educational Loan Assistance
+              </span>{" "}
+              to all eligible students, helping you achieve your dream of
+              becoming a doctor without financial barriers. Our focus is on
+              placing you in globally recognized universities with no capitation
+              fees.
+            </p>
 
-          <ul className="mt-3 sm:mt-4 space-y-2 text-black text-sm sm:text-base text-justify list-disc list-inside">
-            <li>Top Medical Universities Globally</li>
-            <li>No NEET for Admissions</li>
-            <li>Direct Admissions &amp; Visa Processing</li>
-            <li>MCI / NMC &amp; WHO Recognitions</li>
-            <li>Complete Financial &amp; Post-Admission Support</li>
-          </ul>
-        </div>
+            <ul className="features" data-aos="fade-right">
+              <li>Top Medical Universities Globally</li>
+              <li>No NEET for Admissions</li>
+              <li>Direct Admissions &amp; Visa Processing</li>
+              <li>MCI / NMC &amp; WHO Recognitions</li>
+              <li>Complete Financial &amp; Post-Admission Support</li>
+            </ul>
+          </div>
 
-        {/* RIGHT IMAGE/QUOTE SECTION */}
-        <div className="w-full lg:w-2/5">
-          <div className="flex flex-col items-center text-center border border-gray-300 rounded-xl p-3 sm:p-4">
+          {/* RIGHT SIDE (IMAGE + QUOTE) */}
+          <div className="right" data-aos="flip-left" data-aos-duration="2000">
             <img
-              src="https://vsourcevarsity.com/assets/images/founder.webp"
+              src="https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto/v1762754020/imgi_5_founder_pcglp8.jpg"
+              className="founder-img"
               alt="Founder"
-              className="rounded-lg w-full max-w-md object-cover"
             />
-            <p className="mt-3 sm:mt-4 text-sm md:text-base text-gray-700 italic max-w-prose">
-              <strong className="text-xl">“</strong>
-              Redefining Education for Tomorrow’s Innovators
-              <strong className="text-xl">”</strong>
+
+            <p className="quote">
+              “Redefining Education for Tomorrow’s Innovators”
             </p>
           </div>
         </div>
+
+        {/* ----- BOTTOM STATS SECTION ----- */}
+        <div className="bottom-section">
+          {stats.map((stat) => {
+            const count = useCounter(stat.value, 0, 2000, isVisible);
+
+            return (
+              <div
+                key={stat.id}
+                className="stat-box"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
+                <div className="left-box">
+                  <img src={stat.icon} className="icon" />
+
+                  <div className="count text-[#1e73be]">
+                    {count.toLocaleString("en-US")}
+                    {stat.suffix}
+                  </div>
+                </div>
+
+                <div className="label">{stat.label}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* STATS SECTION */}
-      {/* <div className="max-w-7xl mx-auto mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {stats.map((stat) => {
-          const count = useCounter(stat.value, isVisible);
-          return (
-            <div
-              key={stat.id}
-              className="w-full border border-blue-400 rounded-xl p-4 sm:p-6 bg-white shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={stat.icon}
-                  alt={stat.label}
-                  className="w-9 h-9 sm:w-10 sm:h-10 object-contain shrink-0"
-                />
-                <p className="text-2xl sm:text-3xl font-extrabold text-[#1e73be]">
-                  {count.toLocaleString("en-US")}
-                  {stat.suffix}
-                </p>
-              </div>
-              <p className="mt-2 text-sm md:text-base font-semibold text-gray-800 text-justify">
-                {stat.label}
-              </p>
-            </div>
-          );
-        })}
-      </div> */}
-      <div className="bottom-section">
-        {aboutData?.About_us_count?.map((stat, i) => {
-          return (
-            <div
-              key={stat.id}
-              className="stat-box"
-              data-aos="fade-up"
-              data-aos-delay={i * 200}
-              data-aos-duration="1000"
-              data-aos-anchor-placement="center-bottom"
-            >
-              <div className="left-box">
-                <img
-                  src={`${stat?.image_or_gif?.url}`}
-                  alt=""
-                  className="icon"
-                />
-                <div className="count text-[#1e73be]">
-                  {Number(stat?.count).toLocaleString("en-US")}+
-                </div>
-              </div>
-              <div className="label">{stat?.About_text}</div>
-            </div>
-          );
-        })}
-      </div>
+      {/* ====== STYLES (ORIGINAL OVERSEAS DESIGN SYSTEM) ====== */}
       <style>{`
         .about-section {
           padding: clamp(32px, 4vw, 50px) 16px;
-          background: #fff;
+          background: white;
           font-family: 'Barlow', sans-serif;
           color: #111;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
+
         .top-section {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
-        @media (min-width: 768px) {
-          .top-section {
-            grid-template-columns: 65% 30%;
-            gap: 32px;
-            align-items: start;
+
+        h2 {
+          font-size: clamp(30px, 3.6vw, 32px);
+          font-weight: 700;
+        }
+
+        .desc {
+          font-size: clamp(20px, 2.5vw, 25px);
+          margin-top: 8px;
+          font-weight: bold;
+        }
+
+        .para {
+          font-size: clamp(15px, 2.3vw, 16px);
+          margin-top: 10px;
+          line-height: 1.6;
+        }
+
+        .features {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-left: 15px;
+        }
+
+        .features li {
+          font-size: clamp(15px, 2.3vw, 15px);
+          list-style: disc
+        }
+
+        .founder-img {
+          width: 100%;
+          max-width: 450px;
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+        }
+          .right{
+            flex-basis: 50%;
+    min-width: 50%;
           }
+    .left{
+        flex-basis: 50%;
+    min-width: 50%;
+    }
+
+        .quote {
+          font-style: italic;
+          text-align: center;
+          margin-top: 10px;
+          font-size: 15px;
         }
-        .left { min-width: 0; }
-        .right { display: flex; flex-direction: column; align-items: center; }
-        h2 { font-size: clamp(30px, 3.6vw, 32px); font-weight: 700; margin: 0; }
-        .desc { font-size: clamp(20px, 2.5vw, 25px); margin: 8px 0 0; line-height: 1.6; }
-        .para { font-size: clamp(15px, 2.3vw, 15px); margin: 8px 0 0; }
-        .features { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
-        .features li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: clamp(15px, 2.3vw, 15px); }
-        .features li img { width: 22px; height: 22px; margin-top: 2px; }
-        .founder-img { width: 100%; max-width: 450px; border-radius: 10px; border: 1px solid #e5e7eb; }
-        .quote { font-style: italic; margin-top: 10px; text-align: center; font-size: 15px; }
+
         .bottom-section {
-          margin-top: clamp(28px, 6vw, 50px);
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
-          width: 80%;
-          margin: clamp(28px, 6vw, 50px) auto 0;
+            display: flex;
+            margin-top: clamp(28px, 6vw, 50px);
+            width: 93%;
+            margin-left: auto;
+            margin-right: auto;
+            gap: 21px;
         }
-        @media (min-width: 640px) {
-          .bottom-section {
-            grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 950px) {
+          .top-section {
+            flex-direction: column;
+          gap:20px
           }
-        }
-        @media (min-width: 1024px) {
           .bottom-section {
-            grid-template-columns: repeat(3, 1fr);
-          }
+            flex-direction: column;
         }
+      }
+
         .stat-box {
           display: flex;
           align-items: center;
           justify-content: space-between;
           border: 1px solid #0069E9;
-          border-radius: 8px;
+          border-radius: 10px;
           padding: 13px;
+          background: white;
           min-height: 80px;
-          background: #fff;
-          box-sizing: border-box;
         }
+
         .left-box {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
+
         .icon {
           width: 40px;
           height: 40px;
-          flex-shrink: 0;
-          object-fit: contain;
         }
-        .bottom-section .stat-box:first-child .icon {
-          width: 52px;
-          height: 52px;
-        }
+
         .count {
           font-size: clamp(20px, 4.5vw, 30px);
           font-weight: 800;
-          margin: 0;
           white-space: nowrap;
         }
+
         .label {
           font-size: clamp(13px, 3.5vw, 15px);
           font-weight: 600;
-          color: #111;
-          line-height: 1.3;
           text-align: right;
-          margin-left: 10px;
           width: 34%;
         }
-        @media (max-width: 380px) {
-          .stat-box { gap: 8px; padding: 10px; }
-          .count { font-size: 18px; }
-          .label { font-size: 12px; }
-        }
-        @media (max-width: 540px) {
-          .left-box {
-              width: 50%;
-              justify-content: space-between;
-            }
-          .stat-box:first-child .left-box {
-              width: 60%;
-              justify-content: space-between;
-            }
-          }
-        @media (max-width: 640px) {
-          .bottom-section{
-            display:none;
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .about-section * {
-            animation: none !important;
-            transition: none !important;
-          }
-        }
+
       `}</style>
     </section>
   );

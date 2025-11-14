@@ -9,7 +9,8 @@ const CarouselSlider: React.FC = () => {
   const [items, setItems] = useState([
     {
       id: 1,
-      desktop: "/images/universities/university-of-georgia.jpg",
+      desktop:
+        "/images/universities/University-of-Georgia/university-of-georgia.webp",
       caption: "The University Of Georgia",
       description:
         "One of Georgia's leading medical universities, offering internationally recognized MBBS programs with modern infrastructure and global exposure.",
@@ -19,7 +20,8 @@ const CarouselSlider: React.FC = () => {
     },
     {
       id: 2,
-      desktop: "/images/universities/ken-walker-international-university.jpg",
+      desktop:
+        "/images/universities/UniversityKenWalker/ken-walker-international-university.webp",
       caption: "Ken Walker International University",
       description:
         "Known for its American-style curriculum and English-taught MBBS programs, KWU prepares students for international medical licensing exams.",
@@ -29,7 +31,8 @@ const CarouselSlider: React.FC = () => {
     },
     {
       id: 3,
-      desktop: "/images/universities/Tbilisi-University.webp",
+      desktop:
+        "/images/universities/Tbilisi-StateMedical-University/Tbilisi-University.webp",
       caption: "Tbilisi State Medical University",
       description:
         "A prestigious government university with over 100 years of excellence in medical education and strong clinical partnerships across Europe.",
@@ -39,7 +42,7 @@ const CarouselSlider: React.FC = () => {
     },
     {
       id: 4,
-      desktop: "/images/universities/ilia-state.jpg",
+      desktop: "/images/universities/Ilia-State-University/ilia-state.webp",
       caption: "Ilia State University",
       description:
         "A progressive institution in Tbilisi offering high-quality medical and research programs with modern facilities and global collaborations.",
@@ -50,7 +53,7 @@ const CarouselSlider: React.FC = () => {
     {
       id: 5,
       desktop:
-        "/images/universities/Akaki-Tsereteli-State-University-scaled.jpg",
+        "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-scaled.webp",
       caption: "Akaki Tsereteli State University",
       description:
         "Renowned for its affordable education and experienced faculty, ATSU is among the oldest and most respected universities in Georgia.",
@@ -60,7 +63,8 @@ const CarouselSlider: React.FC = () => {
     },
     {
       id: 6,
-      desktop: "/images/universities/Belgorod-State-University.jpg",
+      desktop:
+        "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-University.webp",
       caption: "Belgorod State National Research University",
       description:
         "A top-ranked Russian university focusing on innovation and advanced medical training, recognized by WHO and MCI for its MBBS program.",
@@ -74,39 +78,38 @@ const CarouselSlider: React.FC = () => {
   const [thumbnails, setThumbnails] = useState([
     {
       id: 1,
-      image: "/images/universities/ken-walker-international-university.jpg",
+      image:
+        "/images/universities/UniversityKenWalker/ken-walker-international-university.webp",
       title: "Ken Walker International University",
-      description: "Description",
     },
     {
       id: 2,
-      image: "/images/universities/Tbilisi-University.webp",
+      image:
+        "/images/universities/Tbilisi-StateMedical-University/Tbilisi-University.webp",
       title: "Tbilisi State Medical University",
-      description: "Description",
     },
     {
       id: 3,
-      image: "/images/universities/ilia-state.jpg",
+      image: "/images/universities/Ilia-State-University/ilia-state.webp",
       title: "Ilia State University",
-      description: "Description",
     },
     {
       id: 4,
-      image: "/images/universities/Akaki-Tsereteli-State-University-scaled.jpg",
+      image:
+        "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-scaled.webp",
       title: "Akaki Tsereteli State University",
-      description: "Description",
     },
     {
       id: 5,
-      image: "/images/universities/Belgorod-State-University.jpg",
+      image:
+        "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-University.webp",
       title: "Belgorod State National Research University",
-      description: "Description",
     },
     {
       id: 6,
-      image: "/images/universities/university-of-georgia.jpg",
+      image:
+        "/images/universities/University-of-Georgia/university-of-georgia.webp",
       title: "The University Of Georgia",
-      description: "Description",
     },
   ]);
 
