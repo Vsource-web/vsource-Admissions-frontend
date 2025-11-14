@@ -100,7 +100,7 @@ const Hero = () => {
           </p>
           <div className="flex justify-start pt-6">
             <img
-              src="/images/20 years logo.png"
+              src="https://res.cloudinary.com/dch00stdh/image/upload/f_auto,q_auto,w_400,c_limit,dpr_auto/v1762702830/20-years-logo_be7aro.webp"
               alt="20 Years Logo"
               className="w-36 h-auto"
             />

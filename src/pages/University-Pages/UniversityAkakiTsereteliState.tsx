@@ -19,8 +19,8 @@ const universityData: UniversityData = {
     "ECFMG Certified",
   ],
 
-  heroImg: "/images/universities/AkakiTsereteli-StateUniversity/9.jpeg",
-  hero: "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-scaled.jpg",
+  heroImg: "/images/universities/AkakiTsereteli-StateUniversity/9.webp",
+  hero: "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-scaled.webp",
 
   highlights: [
     { label: "Founded", value: "1930" },
@@ -127,27 +127,27 @@ const universityData: UniversityData = {
   },
 
   gallery: [
-    "/images/universities/AkakiTsereteli-StateUniversity/4.jpg",
-    "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-mobile.jpg",
+    "/images/universities/AkakiTsereteli-StateUniversity/4.webp",
+    "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-mobile.webp",
     "/images/universities/AkakiTsereteli-StateUniversity/12.webp",
     "/images/universities/AkakiTsereteli-StateUniversity/11.webp",
     "/images/universities/AkakiTsereteli-StateUniversity/13.webp",
     "/images/universities/AkakiTsereteli-StateUniversity/8.webp",
-    "/images/universities/AkakiTsereteli-StateUniversity/7.jpg",
-    "/images/universities/AkakiTsereteli-StateUniversity/6.jpg",
+    "/images/universities/AkakiTsereteli-StateUniversity/7.webp",
+    "/images/universities/AkakiTsereteli-StateUniversity/6.webp",
 
     "/images/universities/AkakiTsereteli-StateUniversity/1.webp",
   ],
 
   hostelImages: [
     "/images/universities/AkakiTsereteli-StateUniversity/10.webp",
-    "/images/universities/AkakiTsereteli-StateUniversity/5.jpg",
-    "/images/universities/AkakiTsereteli-StateUniversity/2.jpg",
+    "/images/universities/AkakiTsereteli-StateUniversity/5.webp",
+    "/images/universities/AkakiTsereteli-StateUniversity/2.webp",
   ],
 
   infraImages: [
-    "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-mobile.jpg",
-    "/images/universities/AkakiTsereteli-StateUniversity/3.jpg",
+    "/images/universities/AkakiTsereteli-StateUniversity/Akaki-Tsereteli-State-University-mobile.webp",
+    "/images/universities/AkakiTsereteli-StateUniversity/3.webp",
     "/images/universities/AkakiTsereteli-StateUniversity/8.webp",
   ],
 

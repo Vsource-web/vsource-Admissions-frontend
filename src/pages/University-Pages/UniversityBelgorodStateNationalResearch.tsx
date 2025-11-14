@@ -93,24 +93,24 @@ const universityData: UniversityData = {
   gallery: [
     "/images/universities/Belgorod-State-NationalResearch-University/1.webp",
     "/images/universities/Belgorod-State-NationalResearch-University/3.webp",
-    "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-National-Research-University-mobile.jpg",
+    "/images/universities/Belgorod-State-NationalResearch-University/Belgorod-State-National-Research-University-mobile.webp",
     "/images/universities/Belgorod-State-NationalResearch-University/2.webp",
-    "/images/universities/Belgorod-State-NationalResearch-University/4.jpg",
-    "/images/universities/Belgorod-State-NationalResearch-University/5.jpeg",
-    "/images/universities/Belgorod-State-NationalResearch-University/9.jpg",
-    "/images/universities/Belgorod-State-NationalResearch-University/7.jpg",
+    "/images/universities/Belgorod-State-NationalResearch-University/4.webp",
+    "/images/universities/Belgorod-State-NationalResearch-University/5.webp",
+    "/images/universities/Belgorod-State-NationalResearch-University/9.webp",
+    "/images/universities/Belgorod-State-NationalResearch-University/7.webp",
   ],
 
   hostelImages: [
-    "/images/universities/Belgorod-State-NationalResearch-University/4.jpg",
-    "/images/universities/Belgorod-State-NationalResearch-University/5.jpeg",
-    "/images/universities/Belgorod-State-NationalResearch-University/6.jpg",
+    "/images/universities/Belgorod-State-NationalResearch-University/4.webp",
+    "/images/universities/Belgorod-State-NationalResearch-University/5.webp",
+    "/images/universities/Belgorod-State-NationalResearch-University/6.webp",
   ],
 
   infraImages: [
-    "/images/universities/Belgorod-State-NationalResearch-University/9.jpg",
+    "/images/universities/Belgorod-State-NationalResearch-University/9.webp",
     "/images/universities/Belgorod-State-NationalResearch-University/2.webp",
-    "/images/universities/Belgorod-State-NationalResearch-University/7.jpg",
+    "/images/universities/Belgorod-State-NationalResearch-University/7.webp",
   ],
 
   faqs: [

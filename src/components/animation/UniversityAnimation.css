@@ -1,6 +1,6 @@
 .carousel-container {
   height: 85vh;
-  width: 90vw;
+  width: 99vw;
   overflow: hidden;
   position: relative;
   margin: auto;
@@ -176,5 +176,8 @@
   }
   .content-title {
     font-size: 30px !important;
+  }
+  .carousel-container{
+    width: 99vw;
   }
 }
