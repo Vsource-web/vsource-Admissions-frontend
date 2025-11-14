@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import SectionTitle from "@/components/SectionTitle";
+import { memo, useEffect, useState } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Successstories from "@/components/home/studentsuccess";
 import axios from "axios";
@@ -12,7 +11,7 @@ export const fetchGallery = async () => {
   const { data } = await axios.get(
     `${
       import.meta.env.VITE_CMS_GLOBALURL
-    }/api/gallery?populate[blocks][on][gallery.journey-images][populate][journey_images][fields][0]=url&populate[blocks][on][gallery.journey-images][populate][journey_images][fields][1]=name&populate[blocks][on][gallery.journey-images][populate][journey_images][fields][2]=alternativeText&populate[blocks][on][gallery.journey-images][populate][journey_images][fields][3]=documentId&populate[blocks][on][gallery.gallery-360][populate]=*`
+    }/api/gallery?populate[blocks][on][gallery.journey-images][populate][journey_images]=true&populate[blocks][on][gallery.gallery-360][populate]=*`
   );
   return data.data || {};
 };
@@ -28,7 +27,7 @@ const GalleryPage = () => {
   } = useQuery<Gallery>({
     queryKey: ["gallery"],
     queryFn: fetchGallery,
-    staleTime: Infinity,
+    staleTime: 10 * 60 * 1000,
   });
 
   useEffect(() => {
@@ -48,11 +47,8 @@ const GalleryPage = () => {
   const journeyBlock = gallery?.blocks?.find(
     (block) => block?.__component === "gallery.journey-images"
   );
-  const view360 = gallery?.blocks?.find(
-    (block) => block?.__component === "gallery.gallery-360"
-  );
+
   const journeyImages = journeyBlock?.journey_images || [];
-  const view360Url = view360?.view360url;
 
   return (
     <>
@@ -75,7 +71,7 @@ const GalleryPage = () => {
           {/* Tabs */}
           <div className="flex justify-center mb-12">
             <div className="inline-flex bg-gray-100 rounded-lg p-1">
-              {["all", "photos", "students"].map((tab) => (
+              {["all", "photos", "students"]?.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -101,14 +97,20 @@ const GalleryPage = () => {
           {/* Regular Gallery Grid — hide when a location tab is active */}
           {activeTab !== "students" && journeyImages.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {journeyImages.map((item, index) => (
-                <AnimateOnScroll key={item.id || index} delay={index * 100}>
+              {journeyImages?.map((item, index) => (
+                <AnimateOnScroll key={item?.id || index} delay={index * 100}>
                   <div className="bg-white rounded-lg overflow-hidden shadow-md group relative">
                     <div className="relative h-64 overflow-hidden">
                       <img
-                        src={`${item.url}`}
-                        alt={item.name || "Gallery Photo"}
+                        src={
+                          item?.formats?.small?.url
+                            ? item?.formats?.small?.url
+                            : item?.url
+                        }
+                        alt={item?.name || "Gallery Photo"}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
@@ -122,33 +124,33 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default memo(GalleryPage);
 
 /* 
 
 const imagePaths = {
   "Dakannagari Rohith Reddy":
-    "/images/DAKANNAGARI ROHITH REDDY  (USA).jpeg",
-  "Aninash Yadav": "/images/ANINASH YADAV  (UK).jpeg",
-  "Duddempudi Sahana": "/images/DUDDEMPUDI SAHANA  (USA).jpeg",
-  "Asar Ali Mohammed": "/images/ASAR ALI MOHAMMED  (UK).jpeg",
-  "Moghal Saheera Begum": "/images/MOGHAL SAHEERA BEGUM  (UK).jpeg",
-  "Harsha Vardhan Reddy": "/images/HARSHA VARDHAN REDDY (USA).jpeg",
-  "Ashritha Reddy Beerelly": "/images/ASHRITHA REDDY BEERELLY (UK).jpeg",
+    "/assets/images/DAKANNAGARI ROHITH REDDY  (USA).jpeg",
+  "Aninash Yadav": "/assets/images/ANINASH YADAV  (UK).jpeg",
+  "Duddempudi Sahana": "/assets/images/DUDDEMPUDI SAHANA  (USA).jpeg",
+  "Asar Ali Mohammed": "/assets/images/ASAR ALI MOHAMMED  (UK).jpeg",
+  "Moghal Saheera Begum": "/assets/images/MOGHAL SAHEERA BEGUM  (UK).jpeg",
+  "Harsha Vardhan Reddy": "/assets/images/HARSHA VARDHAN REDDY (USA).jpeg",
+  "Ashritha Reddy Beerelly": "/assets/images/ASHRITHA REDDY BEERELLY (UK).jpeg",
   "Kannikanti Geethika Chowdary":
-    "/images/KANNIKANTI GEETHIKA CHOWDARY (USA).jpeg",
-  "Bojja Glory": "/images/BOJJA GLORY (UK).jpeg",
-  "Khyathi Raguru": "/images/KHYATHI RAGURU (USA).jpeg",
-  "Deekshith Kumar Gudepu": "/images/DEEKSHITH KUMAR GUDEPU (UK).jpeg",
-  "Nithya Sree Bussu": "/images/NITHYA SREE BUSSU (USA).jpeg",
-  "Kathi Tulasi": "/images/KATHI TULASI (UK).jpeg",
-  "Preethi Kalva": "/images/PREETHI KALVA (USA).jpeg",
-  "Sravya Sree Bussu": "/images/SRAVYA SREE BUSSU (USA).jpeg",
-  "Pakala Meghana Reddy": "/images/PAKALA MEGHANA REDDY (UK).jpeg",
-  "Soumya Gopagoni": "/images/SOUMYA GOPAGONI (UK).jpeg",
-  "Adavalli Tharun Kumar": "/images/ADAVALLI THARUN KUMAR (UK).jpeg",
-  "Ummagani Sai Kumar": "/images/UMMAGANI SAI KUMAR (UK).jpeg",
-  Priyanka: "/images/Priyanka.jpg",
+    "/assets/images/KANNIKANTI GEETHIKA CHOWDARY (USA).jpeg",
+  "Bojja Glory": "/assets/images/BOJJA GLORY (UK).jpeg",
+  "Khyathi Raguru": "/assets/images/KHYATHI RAGURU (USA).jpeg",
+  "Deekshith Kumar Gudepu": "/assets/images/DEEKSHITH KUMAR GUDEPU (UK).jpeg",
+  "Nithya Sree Bussu": "/assets/images/NITHYA SREE BUSSU (USA).jpeg",
+  "Kathi Tulasi": "/assets/images/KATHI TULASI (UK).jpeg",
+  "Preethi Kalva": "/assets/images/PREETHI KALVA (USA).jpeg",
+  "Sravya Sree Bussu": "/assets/images/SRAVYA SREE BUSSU (USA).jpeg",
+  "Pakala Meghana Reddy": "/assets/images/PAKALA MEGHANA REDDY (UK).jpeg",
+  "Soumya Gopagoni": "/assets/images/SOUMYA GOPAGONI (UK).jpeg",
+  "Adavalli Tharun Kumar": "/assets/images/ADAVALLI THARUN KUMAR (UK).jpeg",
+  "Ummagani Sai Kumar": "/assets/images/UMMAGANI SAI KUMAR (UK).jpeg",
+  Priyanka: "/assets/images/Priyanka.jpg",
 };
 
 const testimonialsData = [
@@ -278,86 +280,86 @@ const testimonialsData = [
     {
       id: 9,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs13.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs13.jpeg",
       is360: false,
     },
     {
       id: 10,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs14.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs14.jpeg",
       is360: false,
     },
     {
       id: 11,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs2.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs2.jpeg",
       is360: false,
     },
     {
       id: 12,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs1.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs1.jpeg",
       is360: false,
     },
     {
       id: 13,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs6.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs6.jpeg",
       is360: false,
     },
     {
       id: 14,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs5.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs5.jpeg",
       is360: false,
     },
     {
       id: 15,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs4.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs4.jpeg",
       is360: false,
     },
     {
       id: 16,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs3.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs3.jpeg",
       is360: false,
     },
     {
       id: 17,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs7.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs7.jpeg",
       is360: false,
     },
     {
       id: 18,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs8.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs8.jpeg",
       is360: false,
     },
     {
       id: 19,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs9.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs9.jpeg",
       is360: false,
     },
     {
       id: 20,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs10.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs10.jpeg",
       is360: false,
     },
     {
       id: 21,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs16.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs16.jpeg",
       is360: false,
     },
 
     {
       id: 22,
       category: "photos",
-      imageSrc: "https://vsourceoverseas.com/images/vs12.jpeg",
+      imageSrc: "https://vsourceoverseas.com/assets/images/vs12.jpeg",
       is360: false,
     },
     {
