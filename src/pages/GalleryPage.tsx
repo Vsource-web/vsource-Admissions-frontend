@@ -95,7 +95,7 @@ const GalleryPage = () => {
           )}
 
           {/* Regular Gallery Grid — hide when a location tab is active */}
-          {activeTab !== "students" && journeyImages.length > 0 && (
+          {activeTab !== "students" && journeyImages?.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {journeyImages?.map((item, index) => (
                 <AnimateOnScroll key={item?.id || index} delay={index * 100}>
