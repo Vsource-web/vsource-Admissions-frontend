@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 export type FeeRow = {
   year: number;
-  semester?: string; // optional semester label (e.g. "Sem 1", "Semester 1")
+  semester?: string;
   tuition: number;
   hostel?: number;
   insurance?: number;
@@ -22,11 +22,8 @@ export type UniversityData = {
   hero: string;
   highlights: { label: string; value: string }[];
   fees: {
-    // base currency of numbers in rows. Set to "INR" per your request.
     currency: "INR" | "USD" | "GEL" | "RUB";
     rows: FeeRow[];
-    // fxRates: mapping from base currency -> target currency multiplier
-    // Example when base is INR: { USD: 0.012, GEL: 0.033, RUB: 1.1 }
     fxRates: Record<string, number>;
     includes: string[];
     excludes: string[];
@@ -80,26 +77,19 @@ const TABS = [
 ] as const;
 
 export default function UniversityLayout({ university }: Props) {
-  // Tabs and modal state
   const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>("Overview");
 
-  // Gallery / lightbox
   const [open, setOpen] = useState(false);
   const [currentImg, setCurrentImg] = useState<string | null>(null);
 
-  // Student life modal
   const [studentLifeImage, setStudentLifeImage] = useState<string | null>(null);
 
-  // Currency selection (target currency for display). Base currency is university.fees.currency (INR).
   const [currency, setCurrency] = useState<"INR" | "USD" | "GEL" | "RUB">(
     university.fees.currency ?? "INR"
   );
 
-  // Fee view mode: only two modes as requested
   const [feeViewMode, setFeeViewMode] = useState<"year" | "semester">("year");
 
-  // fx rates map (base -> target multiplier). Expect values defined on university.fees.fxRates
-  // If missing, fallback sensible defaults (but you should supply accurate fxRates in data).
   const fxRates = useMemo(() => {
     const rates = university.fees.fxRates || {};
     return {
@@ -110,8 +100,6 @@ export default function UniversityLayout({ university }: Props) {
     } as Record<string, number>;
   }, [university]);
 
-  // convert from base currency (university.fees.currency) to chosen currency.
-  // We assume base === "INR". If base differs, we still use fxRates with the semantic: 1 baseCurrency => fxRates[target]
   const convert = (amountInBase: number) => {
     if (!Number.isFinite(amountInBase)) return 0;
     const mult = fxRates[currency] ?? 1;
@@ -140,33 +128,21 @@ export default function UniversityLayout({ university }: Props) {
     return `${symbolFor(currency)}${formatNumber(convert(amountInBase), 2)}`;
   };
 
-  // Prepare rows:
-  // university.fees.rows may already contain semester rows (semester property present)
-  // or may contain yearly rows (no semester). For Year view we need to display Year row
-  // with Semester 1 & 2 breakdown. We'll handle both:
-  // - If row has semester, use it under its year
-  // - If not, treat the row as a yearly total and split into two equal semester rows for display
-
   const rows = university.fees.rows || [];
 
-  // Map: year -> array of rows (semester rows or generated halves)
   const yearsMap = useMemo(() => {
     const map = new Map<number, FeeRow[]>();
-    // First pass: group existing semester-labeled rows by year; collect yearly-only rows separately
     const yearlyOnly: Record<number, FeeRow | undefined> = {};
 
     rows.forEach((r) => {
       if (r.semester) {
-        // put in group
         if (!map.has(r.year)) map.set(r.year, []);
         map.get(r.year)!.push(r);
       } else {
-        // row looks like a year-total row; keep for splitting later if needed
         yearlyOnly[r.year] = r;
       }
     });
 
-    // For every year we have in either map keys or yearlyOnly, ensure there are two semester rows
     const yearsSet = new Set<number>([
       ...Array.from(map.keys()),
       ...Object.keys(yearlyOnly).map((k) => Number(k)),
@@ -175,7 +151,6 @@ export default function UniversityLayout({ university }: Props) {
     yearsSet.forEach((y) => {
       const existing = map.get(y) ?? [];
       if (existing.length === 0) {
-        // if we have a yearlyOnly row for this year, split it into two semester rows
         const yr = yearlyOnly[y];
         if (yr) {
           const half = (v?: number) => (v ? v / 2 : 0);
@@ -198,14 +173,12 @@ export default function UniversityLayout({ university }: Props) {
           };
           map.set(y, [sem1, sem2]);
         } else {
-          // No data for this year at all: create empty sem rows
           map.set(y, [
             { year: y, semester: "Semester 1", tuition: 0 },
             { year: y, semester: "Semester 2", tuition: 0 },
           ]);
         }
       } else if (existing.length === 1) {
-        // Only one semester present — create a complementary semester with zeros
         const existingSem = existing[0];
         const otherSemLabel = existingSem.semester?.includes("1")
           ? "Semester 2"
@@ -217,7 +190,6 @@ export default function UniversityLayout({ university }: Props) {
         };
         map.set(y, existing.concat(complement));
       } else {
-        // if 2 or more, keep as is (order sem1 then sem2 if possible)
         const sorted = existing.slice().sort((a, b) => {
           const sa = (a.semester || "").toLowerCase();
           const sb = (b.semester || "").toLowerCase();
@@ -232,13 +204,11 @@ export default function UniversityLayout({ university }: Props) {
     return map;
   }, [rows]);
 
-  // Semester rows flattened (sorted by year then sem)
   const semesterRowsFlattened = useMemo(() => {
     const years = Array.from(yearsMap.keys()).sort((a, b) => a - b);
     const output: FeeRow[] = [];
     years.forEach((y) => {
       const sems = yearsMap.get(y) || [];
-      // ensure order sem1 then sem2 if labels allow
       const sorted = sems.slice().sort((a, b) => {
         const sa = (a.semester || "").toLowerCase();
         const sb = (b.semester || "").toLowerCase();
@@ -251,8 +221,6 @@ export default function UniversityLayout({ university }: Props) {
     return output;
   }, [yearsMap]);
 
-  // For "year" view we want to show per-year rows that include the semesters inside, so build that structure:
-  // We'll make an array of objects { year, semesters: FeeRow[], yearTotals }
   const yearRows = useMemo(() => {
     const years = Array.from(yearsMap.keys()).sort((a, b) => a - b);
     return years.map((y) => {
@@ -262,11 +230,9 @@ export default function UniversityLayout({ university }: Props) {
     });
   }, [yearsMap]);
 
-  // Overall totals in base currency
   const overallTotalsBase = computeTotals(
     rows.length ? rows : semesterRowsFlattened
   );
-  // --- Sidebar form (updated to match DelayedPopup.tsx) ---
   const [uniName, setUniName] = useState("");
   const [uniPhone, setUniPhone] = useState("");
   const [uniService, setUniService] = useState("");
