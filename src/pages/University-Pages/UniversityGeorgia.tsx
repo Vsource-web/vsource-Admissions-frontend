@@ -20,8 +20,8 @@ const universityData: UniversityData = {
   ],
 
   heroImg:
-    "/images/universities/University-of-Georgia/university-of-georgia.jpg",
-  hero: "/images/universities/University-of-Georgia/20230731VisitMilledgevilleHistoricDay-38_95E70AD1-5056-BF65-D6277A4C7D8187C0-95e70a435056bf6_95e70d99-5056-bf65-d69ef5040af37f50.jpg",
+    "/images/universities/University-of-Georgia/university-of-georgia.webp",
+  hero: "/images/universities/University-of-Georgia/20230731VisitMilledgevilleHistoricDay-38_95E70AD1-5056-BF65-D6277A4C7D8187C0-95e70a435056bf6_95e70d99-5056-bf65-d69ef5040af37f50.webp",
   highlights: [
     { label: "Founded", value: "2005" },
     { label: "Total Students", value: "8000+" },
@@ -127,25 +127,24 @@ const universityData: UniversityData = {
   },
 
   gallery: [
-    "/images/universities/University-of-Georgia/1stDayOrkinHallClass-1.jpg",
-    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.jpg",
+    "/images/universities/University-of-Georgia/1stDayOrkinHallClass-1.webp",
+    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.webp",
     "/images/universities/University-of-Georgia/Caucasus-University-Medicine.webp",
-    "/images/universities/University-of-Georgia/classroom_2_0.jpg",
-    "/images/universities/University-of-Georgia/images.jpeg",
-    "/images/universities/University-of-Georgia/logosideimg.jpg",
-    "/images/universities/University-of-Georgia/tbilisi-state-medical-university-clinical-skills-centre_tsmucsstudents.jpg.800x600_q85_box-0,0,1536,1024_crop-0,0_detail_upscale.jpg",
+    "/images/universities/University-of-Georgia/classroom_2_0.webp",
+    "/images/universities/University-of-Georgia/images.webp",
+    "/images/universities/University-of-Georgia/logosideimg.webp",
     "/images/universities/University-of-Georgia/university.webp",
   ],
 
   hostelImages: [
-    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.jpg",
-    "/images/universities/University-of-Georgia/hostel-food.jpeg",
+    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.webp",
+    "/images/universities/University-of-Georgia/hostel-food.webp",
     "/images/universities/University-of-Georgia/university.webp",
   ],
 
   infraImages: [
-    "/images/universities/University-of-Georgia/1stDayOrkinHallClass-1.jpg",
-    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.jpg",
+    "/images/universities/University-of-Georgia/1stDayOrkinHallClass-1.webp",
+    "/images/universities/University-of-Georgia/20220829_MLC_DMK_MARCM_002.webp",
     "/images/universities/University-of-Georgia/Caucasus-University-Medicine.webp",
   ],
 

@@ -15,8 +15,8 @@ const universityData: UniversityData = {
     "ECFMG Certified",
   ],
 
-  heroImg: "/images/universities/Ilia-State-University/ilia-state.jpg",
-  hero: "/images/universities/Ilia-State-University/ca.jpg",
+  heroImg: "/images/universities/Ilia-State-University/ilia-state.webp",
+  hero: "/images/universities/Ilia-State-University/ca.webp",
 
   highlights: [
     { label: "Founded", value: "2006" },
@@ -125,28 +125,28 @@ const universityData: UniversityData = {
   },
 
   gallery: [
-    "/images/universities/Ilia-State-University/ilia-state.jpg",
-    "/images/universities/Ilia-State-University/ca.jpg",
+    "/images/universities/Ilia-State-University/ilia-state.webp",
+    "/images/universities/Ilia-State-University/ca.webp",
 
     "/images/universities/Ilia-State-University/2.webp",
-    "/images/universities/Ilia-State-University/ilia-state-university-mobile.jpg",
-    "/images/universities/Ilia-State-University/8.jpg",
-    "/images/universities/Ilia-State-University/9.jpg",
+    "/images/universities/Ilia-State-University/ilia-state-university-mobile.webp",
+    "/images/universities/Ilia-State-University/8.webp",
+    "/images/universities/Ilia-State-University/9.webp",
     "/images/universities/Ilia-State-University/1.webp",
-    "/images/universities/Ilia-State-University/5.jpg",
-    "/images/universities/Ilia-State-University/7.jpg",
+    "/images/universities/Ilia-State-University/5.webp",
+    "/images/universities/Ilia-State-University/7.webp",
   ],
 
   hostelImages: [
-    "/images/universities/Ilia-State-University/8.jpg",
-    "/images/universities/Ilia-State-University/9.jpg",
-    "/images/universities/Ilia-State-University/9.png",
+    "/images/universities/Ilia-State-University/8.webp",
+    "/images/universities/Ilia-State-University/9.webp",
+    "/images/universities/Ilia-State-University/9.webp",
   ],
 
   infraImages: [
     "/images/universities/Ilia-State-University/1.webp",
-    "/images/universities/Ilia-State-University/5.jpg",
-    "/images/universities/Ilia-State-University/7.jpg",
+    "/images/universities/Ilia-State-University/5.webp",
+    "/images/universities/Ilia-State-University/7.webp",
   ],
 
   faqs: [

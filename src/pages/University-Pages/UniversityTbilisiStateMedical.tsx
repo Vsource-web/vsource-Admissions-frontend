@@ -17,7 +17,7 @@ const universityData: UniversityData = {
 
   heroImg:
     "/images/universities/Tbilisi-StateMedical-University/Tbilisi-University.webp",
-  hero: "/images/universities/Tbilisi-StateMedical-University/3.jpeg",
+  hero: "/images/universities/Tbilisi-StateMedical-University/3.webp",
 
   highlights: [
     { label: "Founded", value: "1918" },
@@ -127,26 +127,26 @@ const universityData: UniversityData = {
   },
 
   gallery: [
-    "/images/universities/Tbilisi-StateMedical-University/Tbilisi-State-Medical-University-mobile.jpg",
+    "/images/universities/Tbilisi-StateMedical-University/Tbilisi-State-Medical-University-mobile.webp",
     "/images/universities/Tbilisi-StateMedical-University/4.webp",
-    "/images/universities/Tbilisi-StateMedical-University/6.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/7.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/1.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/2.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/5.jpg",
+    "/images/universities/Tbilisi-StateMedical-University/6.webp",
+    "/images/universities/Tbilisi-StateMedical-University/7.webp",
+    "/images/universities/Tbilisi-StateMedical-University/1.webp",
+    "/images/universities/Tbilisi-StateMedical-University/2.webp",
+    "/images/universities/Tbilisi-StateMedical-University/5.webp",
     "/images/universities/UniversityKenWalker/library.webp",
   ],
 
   hostelImages: [
-    "/images/universities/Tbilisi-StateMedical-University/6.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/7.jpg",
+    "/images/universities/Tbilisi-StateMedical-University/6.webp",
+    "/images/universities/Tbilisi-StateMedical-University/7.webp",
     "/images/universities/Tbilisi-StateMedical-University/8.webp",
   ],
 
   infraImages: [
-    "/images/universities/Tbilisi-StateMedical-University/1.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/2.jpg",
-    "/images/universities/Tbilisi-StateMedical-University/5.jpg",
+    "/images/universities/Tbilisi-StateMedical-University/1.webp",
+    "/images/universities/Tbilisi-StateMedical-University/2.webp",
+    "/images/universities/Tbilisi-StateMedical-University/5.webp",
     "/images/universities/UniversityKenWalker/library.webp",
   ],
 

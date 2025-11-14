@@ -16,7 +16,7 @@ const universityData: UniversityData = {
     "FAIMER Listed",
   ],
   heroImg: "/images/universities/UniversityKenWalker/UniversityKenWalker.webp",
-  hero: "/images/universities/UniversityKenWalker/ken-walker-international-university.jpg",
+  hero: "/images/universities/UniversityKenWalker/ken-walker-international-university.webp",
   highlights: [
     { label: "Founded", value: "1994" },
     { label: "Total Students", value: "6000+" },
@@ -122,26 +122,26 @@ const universityData: UniversityData = {
   },
 
   gallery: [
-    "/images/universities/UniversityKenWalker/ken-walker-international-university-mobile.jpg",
+    "/images/universities/UniversityKenWalker/ken-walker-international-university-mobile.webp",
     "/images/universities/UniversityKenWalker/library.webp",
     "/images/universities/UniversityKenWalker/Ken-Walker-International-University-Practical-room.webp",
-    "/images/universities/UniversityKenWalker/Ken-Walker-International-University.png",
-    "/images/universities/UniversityKenWalker/30.jpg",
-    "/images/universities/UniversityKenWalker/1.jpg",
-    "/images/universities/UniversityKenWalker/class.jpg",
-    "/images/universities/UniversityKenWalker/slider1.png",
+    "/images/universities/UniversityKenWalker/Ken-Walker-International-Universities.webp",
+    "/images/universities/UniversityKenWalker/30.webp",
+    "/images/universities/UniversityKenWalker/1.webp",
+    "/images/universities/UniversityKenWalker/class.webp",
+    "/images/universities/UniversityKenWalker/slider1.webp",
   ],
 
   hostelImages: [
-    "/images/universities/UniversityKenWalker/hostel.png",
-    "/images/universities/UniversityKenWalker/hostell1.png",
-    "/images/universities/UniversityKenWalker/hostel12.png",
+    "/images/universities/UniversityKenWalker/hostel.webp",
+    "/images/universities/UniversityKenWalker/hostell1.webp",
+    "/images/universities/UniversityKenWalker/hostel12.webp",
   ],
 
   infraImages: [
     "/images/universities/UniversityKenWalker/Ken-Walker-International-University-Practical-room.webp",
-    "/images/universities/UniversityKenWalker/Ken-Walker-International-University.png",
-    "/images/universities/UniversityKenWalker/maxresdefault.jpg",
+    "/images/universities/UniversityKenWalker/Ken-Walker-International-Universities.webp",
+    "/images/universities/UniversityKenWalker/maxresdefault.webp",
   ],
 
   faqs: [
