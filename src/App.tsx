@@ -145,11 +145,8 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-
-        <BrowserRouter>
-          <ScrollToTop />
-          <AppContent />
-        </BrowserRouter>
+        <ScrollToTop />
+        <AppContent />
       </TooltipProvider>
     </QueryClientProvider>
   );

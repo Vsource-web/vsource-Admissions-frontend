@@ -62,7 +62,7 @@ const ContactPage = () => {
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Vsource+Overseas+Consultants+Pvt+Ltd",
-                imageUrl: "/assets/images/branches/jntu branch.jpg",
+                imageUrl: "/images/branches/jntu branch.jpg",
               },
               {
                 city: "Vijayawada",
@@ -73,7 +73,7 @@ const ContactPage = () => {
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/VSource+Educational+Consultants+Pvt+Ltd",
-                imageUrl: "/assets/images/branches/vijaywada branch.jpeg",
+                imageUrl: "/images/branches/vijaywada branch.jpeg",
               },
               {
                 city: "Visakhapatnam",
@@ -96,7 +96,7 @@ const ContactPage = () => {
                 hours: "10am to 8pm",
                 locationUrl:
                   "https://www.google.com/maps/place/Vsource+tirupathi",
-                imageUrl: "/assets/images/branches/tirupati branch.jpeg",
+                imageUrl: "/images/branches/tirupati branch.jpeg",
               },
 
               {

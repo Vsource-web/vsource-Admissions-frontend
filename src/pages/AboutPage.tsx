@@ -1,6 +1,5 @@
 import React, { lazy, useEffect } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-// import AboutSection from "../components/home/Aboutsectioninside";
 const AboutSection = lazy(() => import("@/components/home/Aboutsectioninside"));
 import styled from "styled-components";
 import SectionTitle from "@/components/SectionTitle";
@@ -48,7 +47,6 @@ import img41 from "@/assets/about-us/imgi_47_1720255503.jpg";
 import img42 from "@/assets/about-us/imgi_48_1746798079.jpg";
 import img43 from "@/assets/about-us/imgi_49_1746798440.jpg";
 import img44 from "@/assets/about-us/imgi_50_1746799685.jpg";
-import img45 from "@/assets/about-us/imgi_55_1746800414.jpg";
 import img46 from "@/assets/about-us/imgi_51_1746799807.jpg";
 import img47 from "@/assets/about-us/imgi_52_1746800109.jpg";
 import img48 from "@/assets/about-us/imgi_53_1746800202.jpg";

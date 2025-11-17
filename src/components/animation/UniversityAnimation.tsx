@@ -14,7 +14,7 @@ const CarouselSlider: React.FC = () => {
       caption: "The University Of Georgia",
       description:
         "One of Georgia's leading medical universities, offering internationally recognized MBBS programs with modern infrastructure and global exposure.",
-      ctaHref: "/mbbs-abroad/georgia/university-of-georgia",
+      ctaHref: "/mbbs-abroad/georgia/:slug",
       ctaText: "Explore More",
       color: "#BBACAF",
     },
@@ -25,7 +25,7 @@ const CarouselSlider: React.FC = () => {
       caption: "Ken Walker International University",
       description:
         "Known for its American-style curriculum and English-taught MBBS programs, KWU prepares students for international medical licensing exams.",
-      ctaHref: "/mbbs-abroad/georgia/ken-walker-international-university",
+      ctaHref: "/mbbs-abroad/georgia/:slug",
       ctaText: "Explore More",
       color: "#977F6D",
     },
@@ -36,7 +36,7 @@ const CarouselSlider: React.FC = () => {
       caption: "Tbilisi State Medical University",
       description:
         "A prestigious government university with over 100 years of excellence in medical education and strong clinical partnerships across Europe.",
-      ctaHref: "/mbbs-abroad/georgia/tbilisi-state-medical-university",
+      ctaHref: "/mbbs-abroad/georgia/:slug",
       ctaText: "Explore More",
       color: "#B62429",
     },
@@ -46,7 +46,7 @@ const CarouselSlider: React.FC = () => {
       caption: "Ilia State University",
       description:
         "A progressive institution in Tbilisi offering high-quality medical and research programs with modern facilities and global collaborations.",
-      ctaHref: "/mbbs-abroad/georgia/ilia-state-university",
+      ctaHref: "/mbbs-abroad/georgia/:slug",
       ctaText: "Explore More",
       color: "#BBACAF",
     },
@@ -57,7 +57,7 @@ const CarouselSlider: React.FC = () => {
       caption: "Akaki Tsereteli State University",
       description:
         "Renowned for its affordable education and experienced faculty, ATSU is among the oldest and most respected universities in Georgia.",
-      ctaHref: "/mbbs-abroad/georgia/akaki-tsereteli-state-university",
+      ctaHref: "/mbbs-abroad/georgia/:slug",
       ctaText: "Explore More",
       color: "#C2491D",
     },
@@ -68,8 +68,7 @@ const CarouselSlider: React.FC = () => {
       caption: "Belgorod State National Research University",
       description:
         "A top-ranked Russian university focusing on innovation and advanced medical training, recognized by WHO and MCI for its MBBS program.",
-      ctaHref:
-        "/mbbs-abroad/russia/belgorod-state-national-research-university",
+      ctaHref: "/mbbs-abroad/russia/:slug",
       ctaText: "Explore More",
       color: "#977F6D",
     },

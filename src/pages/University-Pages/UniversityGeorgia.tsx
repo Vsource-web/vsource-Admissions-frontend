@@ -1,7 +1,7 @@
 import { useGeorgia } from "@/components/University/University";
 import UniversityLayout from "@/components/University/UniversityLayout";
 import { HeroBannerSkeleton } from "@/Loaders/about-us/BannerSkeleton";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function UniversityGeorgia() {
   const { slug } = useParams();
@@ -41,19 +41,19 @@ export default function UniversityGeorgia() {
 
   if (!universityData) {
     return (
-      <div className="p-10 text-center">
+      <div className="p-10 text-center flex items-center justify-center flex-col min-h-screen bg-gray-300 overflow-hidden">
         <h2 className="text-2xl font-bold text-red-600 mb-3">
-          University Not Found
+          University Not Added Yet
         </h2>
-        <p className="text-gray-700 mb-5">
-          We couldn't find the university you're looking for.
+        <p className="text-black mb-5">
+          This university is not added yet. It will be available soon.
         </p>
-        <a
-          href="/mbbs-abroad/georgia"
-          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        <Link
+          to="/"
+          className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
         >
-          Back to Georgia Universities
-        </a>
+          Back to Home
+        </Link>
       </div>
     );
   }

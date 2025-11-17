@@ -164,7 +164,7 @@ function Navbar() {
                                 : "text-gray-900 hover:bg-gray-100 hover:text-red-600"
                             )}
                           >
-                            {u?.name}
+                            {u.name}
                           </Link>
                         </li>
                       ))
