@@ -2,56 +2,17 @@ import React, { useEffect, useState, useRef, memo } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-type Uni = { name: string; to: string };
-type Category = { key: "georgia" | "russia"; label: string; items: Uni[] };
+import { Category, useNavData } from "./University/University";
 
-const CATEGORIES: Category[] = [
-  {
-    key: "georgia",
-    label: "MBBS IN GEORGIA",
-    items: [
-      {
-        name: "The University Of Georgia",
-        to: "/mbbs-abroad/georgia/university-of-georgia",
-      },
-      {
-        name: "Ken Walker International University",
-        to: "/mbbs-abroad/georgia/ken-walker-international-university",
-      },
-      {
-        name: "Tbilisi State Medical University",
-        to: "/mbbs-abroad/georgia/tbilisi-state-medical-university",
-      },
-      {
-        name: "Ilia State University",
-        to: "/mbbs-abroad/georgia/ilia-state-university",
-      },
-      {
-        name: "Akaki Tsereteli State University",
-        to: "/mbbs-abroad/georgia/akaki-tsereteli-state-university",
-      },
-    ],
-  },
-  {
-    key: "russia",
-    label: "MBBS IN RUSSIA",
-    items: [
-      {
-        name: "Belgorod State National Research University",
-        to: "/mbbs-abroad/russia/belgorod-state-national-research-university",
-      },
-    ],
-  },
-];
 function Navbar() {
   const location = useLocation();
 
-  /* NAV STATES */
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [tab, setTab] = useState<Category["key"]>("georgia");
   const [isScrolled, setIsScrolled] = useState(false);
   const ddRef = useRef<HTMLDivElement | null>(null);
+  const { data: CATEGORIES, isLoading, isError, error } = useNavData();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -92,7 +53,7 @@ function Navbar() {
         : "text-white hover:text-red-600"
     );
 
-  const currentCategory = CATEGORIES.find((c) => c.key === tab)!;
+  const currentCategory = CATEGORIES?.find((c) => c.key === tab)!;
 
   return (
     <header
@@ -143,40 +104,73 @@ function Navbar() {
                 openDropdown ? "opacity-100 visible" : "opacity-0 invisible"
               )}
             >
+              {/* LEFT SIDE CATEGORY TABS */}
               <div className="p-3 space-y-2">
-                {CATEGORIES.map((c) => (
-                  <button
-                    key={c.key}
-                    onMouseEnter={() => setTab(c.key)}
-                    className={cn(
-                      "w-full px-3 py-2 rounded-md text-sm font-semibold transition-colors",
-                      tab === c.key
-                        ? "text-blue-500 bg-gray-50"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-red-600"
-                    )}
-                  >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-              <div className="p-3">
-                <ul className="divide-y">
-                  {currentCategory.items.map((u) => (
-                    <li key={u.to}>
-                      <Link
-                        to={u.to}
-                        className={cn(
-                          "block px-3 py-2 rounded-md text-sm md:text-base transition-colors",
-                          isActive(u.to)
-                            ? "text-red-600"
-                            : "text-gray-900 hover:bg-gray-100 hover:text-red-600"
-                        )}
-                      >
-                        {u.name}
-                      </Link>
-                    </li>
+                {isLoading && (
+                  <div className="text-gray-500 text-sm animate-pulse">
+                    Loading...
+                  </div>
+                )}
+
+                {error && (
+                  <div className="text-red-500 text-sm">
+                    Failed to load categories. Try again later.
+                  </div>
+                )}
+
+                {!isLoading &&
+                  !error &&
+                  CATEGORIES?.map((c) => (
+                    <button
+                      key={c?.key}
+                      onMouseEnter={() => setTab(c?.key)}
+                      className={cn(
+                        "w-full px-3 py-2 rounded-md text-sm font-semibold transition-colors",
+                        tab === c?.key
+                          ? "text-blue-500 bg-gray-50"
+                          : "text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                      )}
+                    >
+                      {c?.label}
+                    </button>
                   ))}
-                </ul>
+              </div>
+
+              {/* RIGHT SIDE ITEMS */}
+              <div className="p-3">
+                {isLoading ? (
+                  <div className="text-gray-500 text-sm animate-pulse">
+                    Loading universities…
+                  </div>
+                ) : error ? (
+                  <div className="text-red-500 text-sm">
+                    Something went wrong while loading data.
+                  </div>
+                ) : (
+                  <ul className="divide-y">
+                    {currentCategory?.items.length === 0 ? (
+                      <li className="text-gray-500 text-sm py-2">
+                        No universities found.
+                      </li>
+                    ) : (
+                      currentCategory?.items.map((u) => (
+                        <li key={u?.to}>
+                          <Link
+                            to={u?.to}
+                            className={cn(
+                              "block px-3 py-2 rounded-md text-sm md:text-base transition-colors",
+                              isActive(u?.to)
+                                ? "text-red-600"
+                                : "text-gray-900 hover:bg-gray-100 hover:text-red-600"
+                            )}
+                          >
+                            {u?.name}
+                          </Link>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
@@ -230,21 +224,21 @@ function Navbar() {
 
           <MobileAccordion label="MBBS-ABROAD">
             <div className="space-y-3 pl-2">
-              {CATEGORIES.map((c) => (
-                <div key={c.key}>
+              {CATEGORIES?.map((c) => (
+                <div key={c?.key}>
                   <div className="mt-1 mb-1 text-[11px] font-semibold uppercase text-gray-500">
-                    {c.label}
+                    {c?.label}
                   </div>
 
                   <div className="space-y-1">
-                    {c.items.map((u) => (
+                    {c?.items?.map((u) => (
                       <MobileLink
-                        key={u.to}
-                        to={u.to}
-                        active={isActive(u.to)}
+                        key={u?.to}
+                        to={u?.to}
+                        active={isActive(u?.to)}
                         onClick={() => setIsOpen(false)}
                       >
-                        {u.name}
+                        {u?.name}
                       </MobileLink>
                     ))}
                   </div>

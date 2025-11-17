@@ -29,21 +29,9 @@ const DelayedPopup = lazy(() => import("./components/DelayedPopup"));
 const UniversityGeorgia = lazy(
   () => import("./pages/University-Pages/UniversityGeorgia")
 );
-const UniversityKenWalker = lazy(
-  () => import("./pages/University-Pages/UniversityKenWalker")
-);
-const UniversityTbilisiStateMedical = lazy(
-  () => import("./pages/University-Pages/UniversityTbilisiStateMedical")
-);
-const UniversityIliaState = lazy(
-  () => import("./pages/University-Pages/UniversityIliaState")
-);
-const UniversityAkakiTsereteliState = lazy(
-  () => import("./pages/University-Pages/UniversityAkakiTsereteliState")
-);
-const UniversityBelgorodStateNationalResearch = lazy(
-  () =>
-    import("./pages/University-Pages/UniversityBelgorodStateNationalResearch")
+
+const UniversityOfRussia = lazy(
+  () => import("./pages/University-Pages/UniversityOfRussia")
 );
 
 const queryClient = new QueryClient({
@@ -101,28 +89,12 @@ const AppContent = () => {
 
             {/* UNIVERSITY PAGES */}
             <Route
-              path="/mbbs-abroad/georgia/university-of-georgia"
+              path="/mbbs-abroad/georgia/:slug"
               element={<UniversityGeorgia />}
             />
             <Route
-              path="/mbbs-abroad/georgia/ken-walker-international-university"
-              element={<UniversityKenWalker />}
-            />
-            <Route
-              path="/mbbs-abroad/georgia/tbilisi-state-medical-university"
-              element={<UniversityTbilisiStateMedical />}
-            />
-            <Route
-              path="/mbbs-abroad/georgia/ilia-state-university"
-              element={<UniversityIliaState />}
-            />
-            <Route
-              path="/mbbs-abroad/georgia/akaki-tsereteli-state-university"
-              element={<UniversityAkakiTsereteliState />}
-            />
-            <Route
-              path="/mbbs-abroad/russia/belgorod-state-national-research-university"
-              element={<UniversityBelgorodStateNationalResearch />}
+              path="/mbbs-abroad/russia/:slug"
+              element={<UniversityOfRussia />}
             />
 
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

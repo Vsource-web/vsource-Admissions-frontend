@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, useAnimation } from "framer-motion";
 import axios from "axios";
@@ -103,7 +103,7 @@ const DelayedPopup: React.FC<DelayedPopupProps> = ({ onMinimize }) => {
     setLoading(true);
     const payload = {
       data: {
-        studentName: name,
+        student_name: name,
         number: phoneNumber,
         service_required: selectedOption,
       },
@@ -111,7 +111,7 @@ const DelayedPopup: React.FC<DelayedPopupProps> = ({ onMinimize }) => {
 
     try {
       const { status } = await axios.post(
-        `${import.meta.env.VITE_CMS_GLOBALURL}/api/fintech-enquires`,
+        `${import.meta.env.VITE_CMS_GLOBALURL}/api/admission-enquires`,
         payload
       );
       if (status === 200 || status === 201) {
@@ -300,4 +300,4 @@ const DelayedPopup: React.FC<DelayedPopupProps> = ({ onMinimize }) => {
     : null;
 };
 
-export default DelayedPopup;
+export default memo(DelayedPopup);

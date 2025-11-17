@@ -1,11 +1,12 @@
-import { useGeorgia } from "@/components/University/University";
+import { useRussia } from "@/components/University/University";
 import UniversityLayout from "@/components/University/UniversityLayout";
 import { HeroBannerSkeleton } from "@/Loaders/about-us/BannerSkeleton";
+import { memo } from "react";
 import { useParams } from "react-router-dom";
 
-export default function UniversityGeorgia() {
+function UniversityOfRussia() {
   const { slug } = useParams();
-  const { data, isLoading, isError, error, refetch, isPending } = useGeorgia();
+  const { data, isLoading, isError, error, refetch, isPending } = useRussia();
 
   if (isLoading) return <HeroBannerSkeleton />;
 
@@ -32,7 +33,7 @@ export default function UniversityGeorgia() {
   if (!data || data.length === 0) {
     return (
       <div className="p-10 text-center text-lg text-gray-600 mt-28">
-        No universities found for Georgia.
+        No universities found for Russia.
       </div>
     );
   }
@@ -49,10 +50,10 @@ export default function UniversityGeorgia() {
           We couldn't find the university you're looking for.
         </p>
         <a
-          href="/mbbs-abroad/georgia"
+          href="/mbbs-abroad/russia"
           className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
         >
-          Back to Georgia Universities
+          Back to Russia Universities
         </a>
       </div>
     );
@@ -60,3 +61,5 @@ export default function UniversityGeorgia() {
 
   return <UniversityLayout university={universityData} />;
 }
+
+export default memo(UniversityOfRussia);
