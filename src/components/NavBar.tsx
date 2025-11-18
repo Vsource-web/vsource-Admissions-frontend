@@ -247,14 +247,13 @@ function Navbar() {
             </div>
           </MobileAccordion>
 
-          <a
-            href="https://vsourceoverseas.com/360View/"
-            target="_blank"
-            rel="noreferrer"
-            className="block py-2 text-lg font-medium text-gray-800 hover:text-red-600"
+          <MobileLink
+            to="/view-360"
+            active={isActive("/view-360")}
+            onClick={() => setIsOpen(false)}
           >
             360 View
-          </a>
+          </MobileLink>
 
           <MobileLink
             to="/gallery"
@@ -300,6 +299,7 @@ function MobileLink({
     </Link>
   );
 }
+
 function MobileAccordion({
   label,
   children,
