@@ -150,28 +150,25 @@ const CarouselSlider: React.FC = () => {
   return (
     <div className="min-h-screen pt-[50px]">
       <div className={`carousel-container ${animationType || ""}`}>
-        <div className="list relative w-full h-full rounded-[15px]">
+        <div className="list relative w-full h-full">
           {items.map((item) => (
             <div key={item.id} className="carousel-item relative">
               <img src={item.desktop} alt={item.caption} />
 
-              <div
-                className="absolute inset-0 rounded-[15px]"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.4), rgba(255,255,255,0))",
-                }}
-              />
+              <div className="absolute inset-0  bg-black/50" />
 
-              <div className="carousel-content absolute sm:top-[20%] top-[10%] left-[50%] translate-x-[-50%] w-[1140px] max-w-[80%] pr-[30%] text-white">
+              <div className="carousel-content absolute sm:top-[10%] top-[10%] left-[50%] translate-x-[-50%] w-[1140px] max-w-[80%] pr-[30%]">
                 <div
-                  className="content-title sm:text-[50px] text-[25px] font-bold leading-[1.3em]"
+                  className="content-title sm:text-[50px] text-[25px] font-bold leading-[1.3em] text-white"
                   style={{ textShadow: "0 5px 10px #0e1221" }}
                 >
                   {item.caption}
                 </div>
 
-                <div className="content-des text-[15px] mt-4">
+                <div
+                  className="content-des sm:text-[20px] text-[15px]  mt-4 text-white"
+                  style={{ textShadow: "0 5px 10px #0e1221" }}
+                >
                   {item.description}
                 </div>
 
@@ -197,7 +194,6 @@ const CarouselSlider: React.FC = () => {
                 thumbnail-item w-[150px] h-[220px] relative 
                 ${idx > 0 ? "hidden" : ""} 
                 md:${idx > 3 ? "hidden" : "block"}
-                shadow-[0px_0px_6px_1px_rgba(255,255,255,0.25)]
                 rounded-[20px]
               `}
             >
